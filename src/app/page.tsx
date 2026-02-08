@@ -149,7 +149,7 @@ const techStack = [
   { name: "GoHighLevel", desc: "AI CRM & Automation", image: "/work/gohighlevel.png" },
   { name: "Envato", desc: "Digital Assets", image: "/work/envato.png" },
   { name: "Lovable", desc: "AI Full-stack Builder", image: "/work/lovable-icon-bg-light.png" },
-  { name: "Rork", desc: "AI Browser", image: "/work/Rork Logo.jpg" },
+  { name: "Rork", desc: "AI Browser", image: "/work/rork.jpg" },
   { name: "Claude", desc: "Anthropic's AI model", image: "/work/claude.jpg" },
   { name: "GitHub Copilot", desc: "AI code assistant", image: "/work/github.png" },
   { name: "n8n", desc: "Workflow automation", image: "/work/n8n.png" },
@@ -537,7 +537,7 @@ export default function Home() {
                   boxShadow: "0 4px 12px rgba(0,0,0,0.1)"
                 }}>
                   <img
-                    src="/work/bio.png"
+                    src="/me.png"
                     alt="Jared Theaman"
                     style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: 16 }}
                   />
