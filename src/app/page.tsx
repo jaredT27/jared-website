@@ -22,7 +22,7 @@ const projects = [
     title: "Tesla Solar Roof, C&I and Residential Programs",
     description: "Launch execution, readiness, and operational dashboards across clean energy programs.",
     tags: ["Program", "Dashboards", "GTM", "Energy"],
-    image: "/work/solar.jpg",
+    image: "/work/solar.png",
   },
   {
     title: "MyTinyTale.ai — AI storytelling product",
