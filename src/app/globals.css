@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+/* ===== DESIGN SYSTEM ===== */
+:root {
+  --sky-1: #B5D4E8;
+  --sky-2: #CFE7F8;
+  --sky-3: #91B9D3;
+  --text: #0B0F14;
+  --muted: rgba(11, 15, 20, 0.55);
+  --muted2: rgba(11, 15, 20, 0.35);
+  --border: rgba(11, 15, 20, 0.10);
+}
+
+html,
+body {
+  background-color: #FFFFFF !important;
+  color: #0B0F14 !important;
+}
