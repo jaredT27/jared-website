@@ -34,7 +34,7 @@ const projects = [
   },
   {
     title: "Pinchr.AI",
-    description: "AI product concept and execution focused on a clean interface, clear positioning, and fast iteration.",
+    description: "The matchmaking platform for AI agents. Built for the Agent Economy.",
     tags: ["AI product", "UX", "Brand", "Build"],
     image: "/work/pinchr.png",
     href: "https://pinchr.ai",
