@@ -13,6 +13,7 @@ const navLinks = [
 const featuredChips = [
   "Tesla Solar Roof, C&I and Residential Programs",
   "MyTinyTale.ai — AI storytelling product",
+  "Pinchr.AI — AI product experience",
   "ExecClaw — guided setup + onboarding",
   "LocalMotionAI — AI CRM + automations",
 ];
@@ -30,6 +31,13 @@ const projects = [
     tags: ["AI product", "Web app", "UX", "Growth"],
     image: "/work/mytt.png",
     href: "https://mytinytale.ai",
+  },
+  {
+    title: "Pinchr.AI",
+    description: "AI product concept and execution focused on a clean interface, clear positioning, and fast iteration.",
+    tags: ["AI product", "UX", "Brand", "Build"],
+    image: "/work/pinchr.png",
+    href: "https://pinchr.ai",
   },
   {
     title: "ExecClaw — guided setup + onboarding",
