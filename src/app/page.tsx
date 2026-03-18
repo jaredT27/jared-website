@@ -1,13 +1,19 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Sparkles, Check, BadgeCheck, ExternalLink } from "lucide-react";
+import { useState } from "react";
+import { ArrowRight, Sparkles, Check, BadgeCheck, ExternalLink, Menu, X } from "lucide-react";
 
 // ===== DATA =====
+const contactMailUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=Jared@LocalMotionAI.com&su=Inquiry%20from%20website&body=Hi%20Jared%2C%0A%0AI'd%20like%20to%20get%20in%20touch%20about...";
+const hireMeUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=Jared@LocalMotionAI.com&su=Inquiry%20from%20website&body=Hi%20Jared%2C%0A%0AI'd%20like%20to%20discuss%20a%20project...";
+const introCallUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=Jared@LocalMotionAI.com&su=Let's%20book%20a%2015-min%20intro&body=Hi%20Jared%2C%0A%0AI'd%20like%20to%20book%20a%2015-min%20intro%20call%20to%20discuss%20a%20potential%20project.%0A%0A";
+
 const navLinks = [
   { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
-  { label: "Contact", href: "https://mail.google.com/mail/?view=cm&fs=1&to=Jared@LocalMotionAI.com&su=Inquiry%20from%20website&body=Hi%20Jared%2C%0A%0AI'd%20like%20to%20get%20in%20touch%20about..." },
+  { label: "Contact", href: contactMailUrl },
 ];
 
 const featuredChips = [
@@ -162,6 +168,8 @@ const techStack = [
 ];
 
 export default function Home() {
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+
   return (
     <div style={{ minHeight: "100vh", background: colors.white, color: colors.text, fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif" }}>
 
@@ -173,21 +181,25 @@ export default function Home() {
           left: 0,
           right: 0,
           zIndex: 50,
-          background: "transparent",
+          background: mobileNavOpen ? "rgba(255, 255, 255, 0.88)" : "transparent",
+          backdropFilter: mobileNavOpen ? "blur(14px)" : undefined,
         }}
       >
-        <div style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
+        <div className="page-shell header-row" style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
           {/* Logo */}
-          <Link href="#" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
-            <img
+          <Link href="#" style={{ display: "flex", alignItems: "center", textDecoration: "none" }} onClick={() => setMobileNavOpen(false)}>
+            <Image
               src="/newlogo.png"
               alt="JT Logo"
+              width={40}
+              height={40}
+              priority
               style={{ width: 40, height: 40, objectFit: "contain" }}
             />
           </Link>
 
           {/* Center Nav */}
-          <nav style={{ display: "flex", alignItems: "center", gap: 32 }} className="hidden md:flex">
+          <nav style={{ display: "flex", alignItems: "center", gap: 32 }} className="desktop-nav">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -203,33 +215,143 @@ export default function Home() {
             ))}
           </nav>
 
-          {/* Hire me button */}
-          <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=Jared@LocalMotionAI.com&su=Inquiry%20from%20website&body=Hi%20Jared%2C%0A%0AI'd%20like%20to%20discuss%20a%20project..."
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 6,
-              padding: "10px 20px",
-              borderRadius: 100,
-              background: colors.text,
-              color: colors.white,
-              fontSize: 14,
-              fontWeight: 600,
-              textDecoration: "none",
-              transition: "all 0.2s",
-            }}
-          >
-            Hire me
-          </a>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            {/* Hire me button */}
+            <a
+              href={hireMeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="desktop-hire"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 6,
+                padding: "10px 20px",
+                borderRadius: 100,
+                background: colors.text,
+                color: colors.white,
+                fontSize: 14,
+                fontWeight: 600,
+                textDecoration: "none",
+                transition: "all 0.2s",
+              }}
+            >
+              Hire me
+            </a>
+
+            <button
+              type="button"
+              aria-label={mobileNavOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={mobileNavOpen}
+              className="mobile-menu-toggle"
+              onClick={() => setMobileNavOpen((open) => !open)}
+              style={{
+                display: "none",
+                alignItems: "center",
+                justifyContent: "center",
+                width: 44,
+                height: 44,
+                borderRadius: 999,
+                border: `1px solid ${colors.border}`,
+                background: "rgba(255, 255, 255, 0.82)",
+                color: colors.text,
+              }}
+            >
+              {mobileNavOpen ? <X style={{ width: 18, height: 18 }} /> : <Menu style={{ width: 18, height: 18 }} />}
+            </button>
+          </div>
         </div>
+
+        {mobileNavOpen ? (
+          <div className="page-shell" style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px 20px" }}>
+            <div
+              style={{
+                background: "rgba(255, 255, 255, 0.96)",
+                border: `1px solid ${colors.border}`,
+                borderRadius: 28,
+                padding: 20,
+                boxShadow: "0 24px 60px rgba(11, 15, 20, 0.12)",
+                display: "flex",
+                flexDirection: "column",
+                gap: 12,
+              }}
+            >
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileNavOpen(false)}
+                  target={link.href.startsWith("http") ? "_blank" : undefined}
+                  rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  style={{
+                    padding: "14px 16px",
+                    borderRadius: 16,
+                    background: "#fff",
+                    border: `1px solid ${colors.border}`,
+                    color: colors.text,
+                    fontSize: 15,
+                    fontWeight: 600,
+                    textDecoration: "none",
+                  }}
+                >
+                  {link.label}
+                </a>
+              ))}
+
+              <div style={{ display: "grid", gap: 12, paddingTop: 8 }}>
+                <a
+                  href={certification.verifyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileNavOpen(false)}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 8,
+                    padding: "14px 16px",
+                    borderRadius: 16,
+                    background: "rgba(207, 231, 248, 0.55)",
+                    border: `1px solid ${colors.border}`,
+                    color: colors.text,
+                    fontSize: 15,
+                    fontWeight: 600,
+                    textDecoration: "none",
+                  }}
+                >
+                  View certification <ExternalLink style={{ width: 16, height: 16 }} />
+                </a>
+
+                <a
+                  href={hireMeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileNavOpen(false)}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 8,
+                    padding: "14px 16px",
+                    borderRadius: 16,
+                    background: colors.text,
+                    color: colors.white,
+                    fontSize: 15,
+                    fontWeight: 600,
+                    textDecoration: "none",
+                  }}
+                >
+                  Hire me
+                </a>
+              </div>
+            </div>
+          </div>
+        ) : null}
       </header>
 
       {/* ===== HERO ===== */}
-      <section style={{ background: heroGradient, paddingTop: 140, paddingBottom: 80 }}>
-        <div style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px" }}>
+      <section className="hero-section" style={{ background: heroGradient, paddingTop: 140, paddingBottom: 80 }}>
+        <div className="page-shell" style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px" }}>
           <div
             className="hero-grid"
             style={{
@@ -261,7 +383,7 @@ export default function Home() {
               </p>
 
               {/* CTAs */}
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 16, marginBottom: 48 }}>
+              <div className="hero-actions" style={{ display: "flex", flexWrap: "wrap", gap: 16, marginBottom: 48 }}>
                 <a
                   href="#work"
                   style={{
@@ -303,7 +425,7 @@ export default function Home() {
               </div>
 
               {/* Chips */}
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+              <div className="hero-chip-cloud" style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
                 {featuredChips.map((chip) => (
                   <span
                     key={chip}
@@ -330,6 +452,7 @@ export default function Home() {
 
             <aside
               id="certification"
+              className="cert-card"
               style={{
                 position: "relative",
                 overflow: "hidden",
@@ -397,6 +520,7 @@ export default function Home() {
                 </div>
 
                 <div
+                  className="cert-stats"
                   style={{
                     display: "grid",
                     gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
@@ -461,18 +585,11 @@ export default function Home() {
             </aside>
           </div>
         </div>
-        <style>{`
-          @media (max-width: 900px) {
-            .hero-grid {
-              grid-template-columns: 1fr !important;
-            }
-          }
-        `}</style>
       </section>
 
       {/* ===== FEATURED WORK ===== */}
-      <section id="work" style={{ background: `linear-gradient(180deg, ${colors.white} 0%, #f8fbfd 50%, ${colors.white} 100%)`, padding: "100px 0" }}>
-        <div style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px" }}>
+      <section id="work" className="section-block" style={{ background: `linear-gradient(180deg, ${colors.white} 0%, #f8fbfd 50%, ${colors.white} 100%)`, padding: "100px 0", scrollMarginTop: 96 }}>
+        <div className="page-shell" style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px" }}>
           <h2 style={{ fontSize: "clamp(1.75rem, 4vw, 2.5rem)", fontWeight: 700, lineHeight: 1.2, letterSpacing: "-0.01em", marginBottom: 16 }}>Featured Work</h2>
           <p style={{ fontSize: "clamp(1rem, 2vw, 1.25rem)", lineHeight: 1.6, color: colors.muted, marginBottom: 48, maxWidth: 600 }}>
             A mix of product launches, program execution, and internal tooling — all designed for clarity, speed, and results.
@@ -487,6 +604,7 @@ export default function Home() {
                 <CardWrapper
                   key={project.title}
                   {...linkProps}
+                  className="project-card"
                   style={{
                     background: colors.white,
                     border: `1px solid ${colors.border}`,
@@ -501,13 +619,13 @@ export default function Home() {
                   }}
                 >
                   {/* Project Image */}
-                  <div style={{ position: "relative", height: 200, overflow: "hidden" }}>
-                    <img
+                  <div className="project-image" style={{ position: "relative", height: 200, overflow: "hidden" }}>
+                    <Image
                       src={project.image}
                       alt={project.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
                       style={{
-                        width: "100%",
-                        height: "100%",
                         objectFit: "cover",
                       }}
                     />
@@ -518,7 +636,7 @@ export default function Home() {
                     }} />
                   </div>
                   {/* Project Info */}
-                  <div style={{ padding: 24 }}>
+                  <div className="project-body" style={{ padding: 24 }}>
                     <h3 style={{ fontWeight: 600, fontSize: 18, marginBottom: 8 }}>{project.title}</h3>
                     <p style={{ fontSize: 14, color: colors.muted, marginBottom: 16, lineHeight: 1.6 }}>{project.description}</p>
                     <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
@@ -537,26 +655,19 @@ export default function Home() {
             })}
           </div>
         </div>
-        <style>{`
-          @media (max-width: 768px) {
-            .work-grid {
-              grid-template-columns: 1fr !important;
-            }
-          }
-        `}</style>
       </section>
 
       {/* ===== ABOUT ===== */}
-      <section id="about" style={{ background: colors.grayBg, padding: "100px 0" }}>
-        <div style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px" }}>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 48 }}>
+      <section id="about" className="section-block" style={{ background: colors.grayBg, padding: "100px 0", scrollMarginTop: 96 }}>
+        <div className="page-shell" style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px" }}>
+          <div className="about-stack" style={{ display: "flex", flexWrap: "wrap", gap: 48 }}>
             {/* Left label */}
-            <div style={{ width: 180, flexShrink: 0 }}>
+            <div className="about-label" style={{ width: 180, flexShrink: 0 }}>
               <span style={{ fontSize: 14, fontWeight: 500, color: colors.muted }}>About me</span>
             </div>
 
             {/* Right content */}
-            <div style={{ flex: 1, minWidth: 320 }}>
+            <div style={{ flex: 1, minWidth: 0 }}>
               <p style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)", fontWeight: 700, lineHeight: 1.4, letterSpacing: "-0.01em" }}>
                 I&apos;m a NJ-based product & program leader and {certification.title}
                 building products end to end. I combine execution, systems thinking, and AI
@@ -568,14 +679,15 @@ export default function Home() {
       </section>
 
       {/* ===== CAPABILITIES ===== */}
-      <section style={{ background: colors.white, padding: "100px 0" }}>
-        <div style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px" }}>
+      <section className="section-block" style={{ background: colors.white, padding: "100px 0" }}>
+        <div className="page-shell" style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px" }}>
           <h2 style={{ fontSize: "clamp(1.75rem, 4vw, 2.5rem)", fontWeight: 700, lineHeight: 1.2, letterSpacing: "-0.01em", marginBottom: 48, textAlign: "center" }}>Capabilities</h2>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 24 }}>
+          <div className="capabilities-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 24 }}>
             {capabilities.map((cap) => (
               <div
                 key={cap.title}
+                className="capability-card"
                 style={{
                   background: colors.white,
                   border: `1px solid ${colors.border}`,
@@ -600,8 +712,8 @@ export default function Home() {
       </section>
 
       {/* ===== TECH STACK ===== */}
-      <section style={{ background: "#0b0f14", padding: "100px 0", color: "#fff" }}>
-        <div style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px" }}>
+      <section className="section-block" style={{ background: "#0b0f14", padding: "100px 0", color: "#fff" }}>
+        <div className="page-shell" style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px" }}>
           <h2 style={{ fontSize: "clamp(2rem, 5vw, 3rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: 16, textAlign: "center" }}>
             My Tech Stack
           </h2>
@@ -609,10 +721,11 @@ export default function Home() {
             Powered by industry-leading AI tools and platforms
           </p>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16 }}>
+          <div className="tech-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))", gap: 16 }}>
             {techStack.map((tool) => (
               <div
                 key={tool.name}
+                className="tech-card"
                 style={{
                   background: "#161b22",
                   border: "1px solid #30363d",
@@ -637,9 +750,12 @@ export default function Home() {
                   overflow: "hidden",
                   padding: 8
                 }}>
-                  <img
+                  <Image
                     src={tool.image}
                     alt={tool.name}
+                    width={48}
+                    height={48}
+                    sizes="48px"
                     style={{
                       width: "100%",
                       height: "100%",
@@ -657,11 +773,11 @@ export default function Home() {
       </section>
 
       {/* ===== BOTTOM CONTACT ===== */}
-      <section style={{ background: colors.grayBg, padding: "100px 0" }}>
-        <div style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px" }}>
-          <div style={{
+      <section className="section-block" style={{ background: colors.grayBg, padding: "100px 0" }}>
+        <div className="page-shell" style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px" }}>
+          <div className="contact-grid" style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
             gap: 64,
             alignItems: "center"
           }}>
@@ -689,7 +805,7 @@ export default function Home() {
 
             {/* Right Side: Profile Card */}
             <div style={{ display: "flex", justifyContent: "center" }}>
-              <div style={{
+              <div className="contact-card" style={{
                 background: "linear-gradient(135deg, #BFDBFE 0%, #60A5FA 100%)", // Blue gradient
                 borderRadius: 32,
                 padding: 40,
@@ -711,9 +827,13 @@ export default function Home() {
                   overflow: "hidden",
                   boxShadow: "0 4px 12px rgba(0,0,0,0.1)"
                 }}>
-                  <img
+                  <Image
                     src="/me.png"
                     alt="Jared Theaman"
+                    width={80}
+                    height={80}
+                    sizes="80px"
+                    priority
                     style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: 16 }}
                   />
                 </div>
@@ -725,7 +845,7 @@ export default function Home() {
                 </div>
 
                 <a
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=Jared@LocalMotionAI.com&su=Let's%20book%20a%2015-min%20intro&body=Hi%20Jared%2C%0A%0AI'd%20like%20to%20book%20a%2015-min%20intro%20call%20to%20discuss%20a%20potential%20project.%0A%0A"
+                  href={introCallUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
@@ -748,7 +868,7 @@ export default function Home() {
                 {/* Email Copy */}
                 <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
                   <span style={{ fontSize: 13, opacity: 0.8 }}>Prefer email?</span>
-                  <div style={{
+                  <div className="contact-email-row" style={{
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
@@ -760,7 +880,7 @@ export default function Home() {
                       alert("Email copied to clipboard!");
                     }}
                   >
-                    <span style={{ fontWeight: 600 }}>Jared@LocalMotionAI.com</span>
+                    <span className="contact-email-text" style={{ fontWeight: 600 }}>Jared@LocalMotionAI.com</span>
                     <div style={{
                       width: 32,
                       height: 32,
@@ -786,11 +906,11 @@ export default function Home() {
 
       {/* ===== FOOTER ===== */}
       <footer style={{ borderTop: `1px solid ${colors.border}`, padding: "32px 0" }}>
-        <div style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
+        <div className="page-shell footer-row" style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
           <p style={{ fontSize: 14, color: colors.muted }}>
             © {new Date().getFullYear()} Jared Theaman. All rights reserved.
           </p>
-          <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
+          <div className="footer-links" style={{ display: "flex", alignItems: "center", gap: 24 }}>
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -805,6 +925,149 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      <style>{`
+        .mobile-menu-toggle {
+          display: none !important;
+        }
+
+        .hero-chip-cloud::-webkit-scrollbar {
+          display: none;
+        }
+
+        @media (max-width: 900px) {
+          .desktop-nav,
+          .desktop-hire {
+            display: none !important;
+          }
+
+          .mobile-menu-toggle {
+            display: inline-flex !important;
+          }
+
+          .hero-section {
+            padding-top: 120px !important;
+            padding-bottom: 64px !important;
+          }
+
+          .hero-grid {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+          }
+
+          .about-stack {
+            gap: 24px !important;
+          }
+
+          .about-label {
+            width: 100% !important;
+          }
+
+          .footer-row {
+            justify-content: center !important;
+            text-align: center !important;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .section-block {
+            padding: 72px 0 !important;
+          }
+
+          .hero-actions {
+            flex-direction: column !important;
+            align-items: stretch !important;
+            margin-bottom: 32px !important;
+          }
+
+          .hero-actions a {
+            width: 100%;
+            justify-content: center;
+          }
+
+          .hero-chip-cloud {
+            overflow-x: auto;
+            flex-wrap: nowrap !important;
+            padding-bottom: 4px;
+            margin-right: -24px;
+            padding-right: 24px;
+            scrollbar-width: none;
+          }
+
+          .hero-chip-cloud > span {
+            flex: 0 0 auto;
+            white-space: nowrap;
+          }
+
+          .cert-card {
+            padding: 24px !important;
+            border-radius: 28px !important;
+          }
+
+          .cert-stats {
+            grid-template-columns: 1fr !important;
+          }
+
+          .work-grid {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+          }
+
+          .project-image {
+            height: 180px !important;
+          }
+
+          .project-body,
+          .capability-card,
+          .tech-card {
+            padding: 20px !important;
+          }
+
+          .capabilities-grid,
+          .contact-grid {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+          }
+
+          .contact-card {
+            padding: 28px !important;
+          }
+
+          .footer-links {
+            width: 100%;
+            justify-content: center !important;
+            flex-wrap: wrap !important;
+          }
+        }
+
+        @media (max-width: 560px) {
+          .page-shell {
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+          }
+
+          .header-row {
+            height: 72px !important;
+          }
+
+          .hero-section {
+            padding-top: 104px !important;
+          }
+
+          .tech-grid {
+            grid-template-columns: 1fr !important;
+          }
+
+          .contact-email-row {
+            align-items: flex-start !important;
+            gap: 12px !important;
+          }
+
+          .contact-email-text {
+            overflow-wrap: anywhere;
+          }
+        }
+      `}</style>
     </div>
   );
 }
