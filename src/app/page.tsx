@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Sparkles, Check, Mail, Calendar, Menu, Video, Zap, Globe, Bot, Code, Workflow, Mic, Image, Rocket, Palette } from "lucide-react";
+import { ArrowRight, Sparkles, Check, BadgeCheck, ExternalLink } from "lucide-react";
 
 // ===== DATA =====
 const navLinks = [
@@ -11,7 +11,9 @@ const navLinks = [
 ];
 
 const featuredChips = [
+  "Claude Certified Architect (2026)",
   "Tesla Solar Roof, C&I and Residential Programs",
+  "Solar Sentinel — interconnection queue intelligence",
   "MyTinyTale.ai — AI storytelling product",
   "Pinchr.AI — AI product experience",
   "ExecClaw — guided setup + onboarding",
@@ -23,7 +25,14 @@ const projects = [
     title: "Tesla Solar Roof, C&I and Residential Programs",
     description: "Launch execution, readiness, and operational dashboards across clean energy programs.",
     tags: ["Program", "Dashboards", "GTM", "Energy"],
-    image: "/work/solar.png",
+    image: "/work/solar.jpg",
+  },
+  {
+    title: "Solar Sentinel — interconnection queue intelligence",
+    description: "Daily queue intelligence with Telegram alerts for new entries, capacity shifts, and withdrawals with map context.",
+    tags: ["Solar", "Energy", "Alerts", "Data"],
+    image: "/work/solar-sentinel-queue.png",
+    href: "https://sentinel-alerts.vercel.app/",
   },
   {
     title: "MyTinyTale.ai — AI storytelling product",
@@ -107,26 +116,12 @@ const capabilities = [
   },
 ];
 
-const pricingPlans = [
-  {
-    name: "Advisory",
-    description: "Strategic guidance for your product or program",
-    price: "Custom",
-    features: ["Weekly strategy calls", "Async support", "Document review"],
-  },
-  {
-    name: "Build Sprint",
-    description: "Focused execution on a specific deliverable",
-    price: "Custom",
-    features: ["2-4 week engagement", "Dedicated focus", "Tangible output"],
-  },
-  {
-    name: "Ongoing Ops",
-    description: "Embedded support for continuous execution",
-    price: "Custom",
-    features: ["Part-time / Full-time", "Ops + reporting", "Process ownership"],
-  },
-];
+const certification = {
+  title: "Claude Certified Architect",
+  issued: "March 16, 2026",
+  credentialId: "pg7kobvx7hcw",
+  verifyUrl: "https://verify.skilljar.com/c/pg7kobvx7hcw",
+};
 
 // ===== STYLES =====
 const colors = {
@@ -235,72 +230,244 @@ export default function Home() {
       {/* ===== HERO ===== */}
       <section style={{ background: heroGradient, paddingTop: 140, paddingBottom: 80 }}>
         <div style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px" }}>
-          {/* Kicker */}
-          <p style={{ fontSize: 14, fontWeight: 500, color: colors.muted, marginBottom: 24 }}>
-            Product & Program Leader • AI Builder • Energy / SaaS / Fintech
-          </p>
+          <div
+            className="hero-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "minmax(0, 1.15fr) minmax(320px, 0.85fr)",
+              gap: 32,
+              alignItems: "center",
+            }}
+          >
+            <div>
+              {/* Kicker */}
+              <p style={{ fontSize: 14, fontWeight: 500, color: colors.muted, marginBottom: 24 }}>
+                Product & Program Leader • AI Builder • Claude Certified Architect
+              </p>
 
-          {/* Headlines */}
-          <h1 style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em", color: colors.text, marginBottom: 8 }}>
-            I build and ship real products
-          </h1>
-          <p style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em", color: colors.muted2, marginBottom: 32 }}>
-            fast, clean, and measurable.
-          </p>
+              {/* Headlines */}
+              <h1 style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em", color: colors.text, marginBottom: 8 }}>
+                I build and ship real products
+              </h1>
+              <p style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em", color: colors.muted2, marginBottom: 32 }}>
+                fast, clean, and measurable.
+              </p>
 
-          {/* Supporting paragraph */}
-          <p style={{ fontSize: "clamp(1rem, 2vw, 1.25rem)", lineHeight: 1.6, color: colors.muted, maxWidth: 640, marginBottom: 40 }}>
-            I've led high-stakes launches, built operational dashboards and enablement programs,
-            and I can also prototype and automate. If your work touches ops, partners, data,
-            and execution — I'm in my zone.
-          </p>
+              {/* Supporting paragraph */}
+              <p style={{ fontSize: "clamp(1rem, 2vw, 1.25rem)", lineHeight: 1.6, color: colors.muted, maxWidth: 640, marginBottom: 40 }}>
+                Fresh off earning the {certification.title} credential, I lead high-stakes launches,
+                build operational dashboards and enablement programs, and prototype automations that
+                actually get used. If your work touches ops, partners, data, and execution, I&apos;m in my zone.
+              </p>
 
-          {/* CTAs */}
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 16, marginBottom: 48 }}>
-            <a
-              href="#work"
+              {/* CTAs */}
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 16, marginBottom: 48 }}>
+                <a
+                  href="#work"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 8,
+                    padding: "14px 28px",
+                    borderRadius: 100,
+                    background: colors.text,
+                    color: colors.white,
+                    fontSize: 15,
+                    fontWeight: 600,
+                    textDecoration: "none",
+                  }}
+                >
+                  See Work <ArrowRight style={{ width: 16, height: 16 }} />
+                </a>
+                <a
+                  href={certification.verifyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 8,
+                    padding: "14px 28px",
+                    borderRadius: 100,
+                    background: "rgba(255, 255, 255, 0.72)",
+                    backdropFilter: "blur(8px)",
+                    color: colors.text,
+                    fontSize: 15,
+                    fontWeight: 600,
+                    textDecoration: "none",
+                    border: `1px solid ${colors.border}`,
+                  }}
+                >
+                  Verify credential <ExternalLink style={{ width: 16, height: 16 }} />
+                </a>
+              </div>
+
+              {/* Chips */}
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+                {featuredChips.map((chip) => (
+                  <span
+                    key={chip}
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 8,
+                      padding: "10px 18px",
+                      background: "rgba(255, 255, 255, 0.7)",
+                      backdropFilter: "blur(8px)",
+                      border: `1px solid ${colors.border}`,
+                      borderRadius: 100,
+                      fontSize: 13,
+                      fontWeight: 500,
+                      color: colors.text,
+                    }}
+                  >
+                    <Sparkles style={{ width: 14, height: 14, color: colors.muted }} />
+                    {chip}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <aside
+              id="certification"
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                padding: "14px 28px",
-                borderRadius: 100,
-                background: colors.text,
+                position: "relative",
+                overflow: "hidden",
+                borderRadius: 32,
+                padding: 32,
+                background: "linear-gradient(155deg, #d97553 0%, #e38b68 38%, #f1b39d 100%)",
+                boxShadow: "0 30px 80px rgba(217, 117, 83, 0.28)",
                 color: colors.white,
-                fontSize: 15,
-                fontWeight: 600,
-                textDecoration: "none",
               }}
             >
-              See Work <ArrowRight style={{ width: 16, height: 16 }} />
-            </a>
-          </div>
-
-          {/* Chips */}
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
-            {featuredChips.map((chip) => (
-              <span
-                key={chip}
+              <div
                 style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 8,
-                  padding: "10px 18px",
-                  background: "rgba(255, 255, 255, 0.7)",
-                  backdropFilter: "blur(8px)",
-                  border: `1px solid ${colors.border}`,
-                  borderRadius: 100,
-                  fontSize: 13,
-                  fontWeight: 500,
-                  color: colors.text,
+                  position: "absolute",
+                  width: 240,
+                  height: 240,
+                  borderRadius: "50%",
+                  background: "rgba(255, 255, 255, 0.14)",
+                  top: -72,
+                  right: -72,
                 }}
-              >
-                <Sparkles style={{ width: 14, height: 14, color: colors.muted }} />
-                {chip}
-              </span>
-            ))}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  width: 180,
+                  height: 180,
+                  borderRadius: "50%",
+                  background: "rgba(255, 255, 255, 0.10)",
+                  bottom: -90,
+                  left: -50,
+                }}
+              />
+
+              <div style={{ position: "relative", display: "flex", flexDirection: "column", gap: 24 }}>
+                <div
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 10,
+                    alignSelf: "flex-start",
+                    padding: "10px 16px",
+                    borderRadius: 999,
+                    background: "rgba(255, 255, 255, 0.16)",
+                    border: "1px solid rgba(255, 255, 255, 0.22)",
+                    fontSize: 13,
+                    fontWeight: 600,
+                    letterSpacing: "0.02em",
+                  }}
+                >
+                  <BadgeCheck style={{ width: 16, height: 16 }} />
+                  Newly certified
+                </div>
+
+                <div>
+                  <p style={{ marginBottom: 10, fontSize: 13, fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255, 255, 255, 0.76)" }}>
+                    Issued {certification.issued}
+                  </p>
+                  <h2 style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", lineHeight: 1, letterSpacing: "-0.03em", fontWeight: 700, marginBottom: 16 }}>
+                    {certification.title}
+                  </h2>
+                  <p style={{ fontSize: 16, lineHeight: 1.7, color: "rgba(255, 255, 255, 0.9)", maxWidth: 420 }}>
+                    A verified credential that sharpens the way I design AI-powered workflows, agent experiences,
+                    and production-ready systems.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+                    gap: 14,
+                  }}
+                >
+                  <div
+                    style={{
+                      padding: 18,
+                      borderRadius: 20,
+                      background: "rgba(255, 255, 255, 0.14)",
+                      border: "1px solid rgba(255, 255, 255, 0.22)",
+                    }}
+                  >
+                    <p style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(255, 255, 255, 0.74)", marginBottom: 8 }}>
+                      Credential ID
+                    </p>
+                    <p style={{ fontSize: 18, fontWeight: 600, lineHeight: 1.4 }}>
+                      {certification.credentialId}
+                    </p>
+                  </div>
+                  <div
+                    style={{
+                      padding: 18,
+                      borderRadius: 20,
+                      background: "rgba(255, 255, 255, 0.14)",
+                      border: "1px solid rgba(255, 255, 255, 0.22)",
+                    }}
+                  >
+                    <p style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(255, 255, 255, 0.74)", marginBottom: 8 }}>
+                      Verification
+                    </p>
+                    <p style={{ fontSize: 18, fontWeight: 600, lineHeight: 1.4 }}>
+                      Skilljar hosted
+                    </p>
+                  </div>
+                </div>
+
+                <a
+                  href={certification.verifyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: 12,
+                    padding: "18px 20px",
+                    borderRadius: 20,
+                    background: colors.white,
+                    color: "#b24f2d",
+                    fontSize: 15,
+                    fontWeight: 700,
+                    textDecoration: "none",
+                    boxShadow: "0 14px 30px rgba(116, 44, 21, 0.18)",
+                  }}
+                >
+                  View verified certification
+                  <ExternalLink style={{ width: 18, height: 18 }} />
+                </a>
+              </div>
+            </aside>
           </div>
         </div>
+        <style>{`
+          @media (max-width: 900px) {
+            .hero-grid {
+              grid-template-columns: 1fr !important;
+            }
+          }
+        `}</style>
       </section>
 
       {/* ===== FEATURED WORK ===== */}
@@ -391,9 +558,9 @@ export default function Home() {
             {/* Right content */}
             <div style={{ flex: 1, minWidth: 320 }}>
               <p style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)", fontWeight: 700, lineHeight: 1.4, letterSpacing: "-0.01em" }}>
-                I'm a NJ-based product & program leader building products end to end.
-                I combine execution, systems thinking, and AI automation where it actually
-                works — one owner, zero bloat, direct collaboration.
+                I&apos;m a NJ-based product & program leader and {certification.title}
+                building products end to end. I combine execution, systems thinking, and AI
+                automation where it actually works: one owner, zero bloat, direct collaboration.
               </p>
             </div>
           </div>
