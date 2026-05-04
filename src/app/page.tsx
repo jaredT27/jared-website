@@ -21,6 +21,7 @@ const featuredChips = [
   "Tesla Solar Roof, C&I and Residential Programs",
   "Solar Sentinel — interconnection queue intelligence",
   "MyTinyTale.ai — AI storytelling product",
+  "Palm Cipher — AI palm reading + oracle cards",
   "Pinchr.AI — AI product experience",
   "ExecClaw — guided setup + onboarding",
   "LocalMotionAI — AI CRM + automations",
@@ -46,6 +47,13 @@ const projects = [
     tags: ["AI product", "Web app", "UX", "Growth"],
     image: "/work/mytt.png",
     href: "https://mytinytale.ai",
+  },
+  {
+    title: "Palm Cipher — AI palm reading + oracle cards",
+    description: "Cinematic AI palm readings with shareable mystical oracle cards, built with a fast, privacy-forward upload flow.",
+    tags: ["AI product", "Computer vision", "UX", "Launch"],
+    image: "/work/palmcipher.jpg",
+    href: "https://palmcipher.com",
   },
   {
     title: "Pinchr.AI",
