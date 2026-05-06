@@ -15,4 +15,14 @@ html,
 body {
   background-color: #FFFFFF !important;
   color: #0B0F14 !important;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }

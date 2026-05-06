@@ -371,20 +371,20 @@ export default function Home() {
           >
             <div>
               {/* Kicker */}
-              <p style={{ fontSize: 14, fontWeight: 500, color: colors.muted, marginBottom: 24 }}>
+              <p className="hero-kicker" style={{ fontSize: 14, fontWeight: 500, color: colors.muted, marginBottom: 24 }}>
                 Product & Program Leader • AI Builder • Claude Certified Architect
               </p>
 
               {/* Headlines */}
-              <h1 style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em", color: colors.text, marginBottom: 8 }}>
+              <h1 className="hero-title" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em", color: colors.text, marginBottom: 8 }}>
                 I build and ship real products
               </h1>
-              <p style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em", color: colors.muted2, marginBottom: 32 }}>
+              <p className="hero-subtitle" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em", color: colors.muted2, marginBottom: 32 }}>
                 fast, clean, and measurable.
               </p>
 
               {/* Supporting paragraph */}
-              <p style={{ fontSize: "clamp(1rem, 2vw, 1.25rem)", lineHeight: 1.6, color: colors.muted, maxWidth: 640, marginBottom: 40 }}>
+              <p className="hero-copy" style={{ fontSize: "clamp(1rem, 2vw, 1.25rem)", lineHeight: 1.6, color: colors.muted, maxWidth: 640, marginBottom: 40 }}>
                 Fresh off earning the {certification.title} credential, I lead high-stakes launches,
                 build operational dashboards and enablement programs, and prototype automations that
                 actually get used. If your work touches ops, partners, data, and execution, I&apos;m in my zone.
@@ -598,8 +598,8 @@ export default function Home() {
       {/* ===== FEATURED WORK ===== */}
       <section id="work" className="section-block" style={{ background: `linear-gradient(180deg, ${colors.white} 0%, #f8fbfd 50%, ${colors.white} 100%)`, padding: "100px 0", scrollMarginTop: 96 }}>
         <div className="page-shell" style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px" }}>
-          <h2 style={{ fontSize: "clamp(1.75rem, 4vw, 2.5rem)", fontWeight: 700, lineHeight: 1.2, letterSpacing: "-0.01em", marginBottom: 16 }}>Featured Work</h2>
-          <p style={{ fontSize: "clamp(1rem, 2vw, 1.25rem)", lineHeight: 1.6, color: colors.muted, marginBottom: 48, maxWidth: 600 }}>
+          <h2 className="section-heading" style={{ fontSize: "clamp(1.75rem, 4vw, 2.5rem)", fontWeight: 700, lineHeight: 1.2, letterSpacing: "-0.01em", marginBottom: 16 }}>Featured Work</h2>
+          <p className="section-intro" style={{ fontSize: "clamp(1rem, 2vw, 1.25rem)", lineHeight: 1.6, color: colors.muted, marginBottom: 48, maxWidth: 600 }}>
             A mix of product launches, program execution, and internal tooling — all designed for clarity, speed, and results.
           </p>
 
@@ -677,8 +677,8 @@ export default function Home() {
             {/* Right content */}
             <div style={{ flex: 1, minWidth: 0 }}>
               <p style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)", fontWeight: 700, lineHeight: 1.4, letterSpacing: "-0.01em" }}>
-                I&apos;m a NJ-based product & program leader and {certification.title}
-                building products end to end. I combine execution, systems thinking, and AI
+                I&apos;m a NJ-based product & program leader and {certification.title} building products end to end.
+                I combine execution, systems thinking, and AI
                 automation where it actually works: one owner, zero bloat, direct collaboration.
               </p>
             </div>
@@ -689,7 +689,7 @@ export default function Home() {
       {/* ===== CAPABILITIES ===== */}
       <section className="section-block" style={{ background: colors.white, padding: "100px 0" }}>
         <div className="page-shell" style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px" }}>
-          <h2 style={{ fontSize: "clamp(1.75rem, 4vw, 2.5rem)", fontWeight: 700, lineHeight: 1.2, letterSpacing: "-0.01em", marginBottom: 48, textAlign: "center" }}>Capabilities</h2>
+          <h2 className="section-heading" style={{ fontSize: "clamp(1.75rem, 4vw, 2.5rem)", fontWeight: 700, lineHeight: 1.2, letterSpacing: "-0.01em", marginBottom: 48, textAlign: "center" }}>Capabilities</h2>
 
           <div className="capabilities-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 24 }}>
             {capabilities.map((cap) => (
@@ -722,10 +722,10 @@ export default function Home() {
       {/* ===== TECH STACK ===== */}
       <section className="section-block" style={{ background: "#0b0f14", padding: "100px 0", color: "#fff" }}>
         <div className="page-shell" style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px" }}>
-          <h2 style={{ fontSize: "clamp(2rem, 5vw, 3rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: 16, textAlign: "center" }}>
+          <h2 className="section-heading" style={{ fontSize: "clamp(2rem, 5vw, 3rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: 16, textAlign: "center" }}>
             My Tech Stack
           </h2>
-          <p style={{ fontSize: "clamp(1rem, 2vw, 1.125rem)", lineHeight: 1.6, color: "#888", textAlign: "center", marginBottom: 64 }}>
+          <p className="section-intro" style={{ fontSize: "clamp(1rem, 2vw, 1.125rem)", lineHeight: 1.6, color: "#888", textAlign: "center", marginBottom: 64 }}>
             Powered by industry-leading AI tools and platforms
           </p>
 
@@ -791,7 +791,7 @@ export default function Home() {
           }}>
             {/* Left Side: Text */}
             <div>
-              <h2 style={{
+              <h2 className="contact-heading" style={{
                 fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
                 fontWeight: 700,
                 lineHeight: 1.1,
@@ -943,6 +943,35 @@ export default function Home() {
           display: none;
         }
 
+        .page-shell,
+        .hero-grid,
+        .hero-grid > *,
+        .work-grid,
+        .capabilities-grid,
+        .tech-grid,
+        .contact-grid {
+          min-width: 0;
+        }
+
+        .hero-chip-cloud {
+          max-width: 100%;
+        }
+
+        .project-card,
+        .capability-card,
+        .tech-card,
+        .contact-card {
+          transform: translateZ(0);
+        }
+
+        .project-card:focus-visible,
+        .hero-actions a:focus-visible,
+        .contact-card a:focus-visible,
+        .mobile-menu-toggle:focus-visible {
+          outline: 3px solid rgba(145, 185, 211, 0.9);
+          outline-offset: 3px;
+        }
+
         @media (max-width: 900px) {
           .desktop-nav,
           .desktop-hire {
@@ -955,12 +984,12 @@ export default function Home() {
 
           .hero-section {
             padding-top: 120px !important;
-            padding-bottom: 64px !important;
+            padding-bottom: 56px !important;
           }
 
           .hero-grid {
             grid-template-columns: 1fr !important;
-            gap: 24px !important;
+            gap: 28px !important;
           }
 
           .about-stack {
@@ -979,56 +1008,120 @@ export default function Home() {
 
         @media (max-width: 768px) {
           .section-block {
-            padding: 72px 0 !important;
+            padding: 64px 0 !important;
+          }
+
+          .section-heading {
+            font-size: 2rem !important;
+            margin-bottom: 14px !important;
+          }
+
+          .section-intro {
+            font-size: 1rem !important;
+            margin-bottom: 32px !important;
+          }
+
+          .hero-kicker {
+            font-size: 13px !important;
+            line-height: 1.45 !important;
+            margin-bottom: 18px !important;
+            max-width: 290px;
+          }
+
+          .hero-title,
+          .hero-subtitle {
+            font-size: clamp(2.35rem, 12vw, 3.45rem) !important;
+            line-height: 1.04 !important;
+            letter-spacing: 0 !important;
+          }
+
+          .hero-title {
+            margin-bottom: 6px !important;
+          }
+
+          .hero-subtitle {
+            margin-bottom: 24px !important;
+          }
+
+          .hero-copy {
+            font-size: 1rem !important;
+            line-height: 1.58 !important;
+            margin-bottom: 28px !important;
           }
 
           .hero-actions {
             flex-direction: column !important;
             align-items: stretch !important;
-            margin-bottom: 32px !important;
+            gap: 12px !important;
+            margin-bottom: 26px !important;
           }
 
           .hero-actions a {
             width: 100%;
             justify-content: center;
+            min-height: 48px;
+            padding: 13px 18px !important;
           }
 
           .hero-chip-cloud {
             overflow-x: auto;
             flex-wrap: nowrap !important;
-            padding-bottom: 4px;
+            gap: 10px !important;
+            padding-bottom: 8px;
             margin-right: -24px;
             padding-right: 24px;
             scrollbar-width: none;
+            scroll-snap-type: x proximity;
           }
 
           .hero-chip-cloud > span {
             flex: 0 0 auto;
             white-space: nowrap;
+            scroll-snap-align: start;
+            padding: 9px 14px !important;
+            font-size: 12px !important;
           }
 
           .cert-card {
-            padding: 24px !important;
-            border-radius: 28px !important;
+            padding: 22px !important;
+            border-radius: 22px !important;
+            box-shadow: 0 18px 48px rgba(217, 117, 83, 0.2) !important;
           }
 
           .cert-stats {
             grid-template-columns: 1fr !important;
+            gap: 10px !important;
           }
 
           .work-grid {
             grid-template-columns: 1fr !important;
-            gap: 20px !important;
+            gap: 18px !important;
           }
 
           .project-image {
-            height: 180px !important;
+            height: 172px !important;
+          }
+
+          .project-card {
+            border-radius: 18px !important;
+            box-shadow: 0 3px 16px rgba(11, 15, 20, 0.07) !important;
           }
 
           .project-body,
           .capability-card,
           .tech-card {
-            padding: 20px !important;
+            padding: 18px !important;
+          }
+
+          .project-body h3,
+          .capability-card h3 {
+            font-size: 17px !important;
+            line-height: 1.28 !important;
+          }
+
+          .project-body p {
+            line-height: 1.55 !important;
+            margin-bottom: 14px !important;
           }
 
           .capabilities-grid,
@@ -1038,7 +1131,14 @@ export default function Home() {
           }
 
           .contact-card {
-            padding: 28px !important;
+            max-width: none !important;
+            padding: 24px !important;
+            border-radius: 24px !important;
+          }
+
+          .contact-heading {
+            font-size: 2.25rem !important;
+            line-height: 1.05 !important;
           }
 
           .footer-links {
@@ -1050,20 +1150,79 @@ export default function Home() {
 
         @media (max-width: 560px) {
           .page-shell {
-            padding-left: 20px !important;
-            padding-right: 20px !important;
+            padding-left: 18px !important;
+            padding-right: 18px !important;
           }
 
           .header-row {
-            height: 72px !important;
+            height: 68px !important;
           }
 
           .hero-section {
-            padding-top: 104px !important;
+            padding-top: 98px !important;
+            padding-bottom: 48px !important;
+          }
+
+          .hero-title,
+          .hero-subtitle {
+            font-size: clamp(2.1rem, 11.2vw, 2.85rem) !important;
+          }
+
+          .hero-copy {
+            max-width: 34rem !important;
+          }
+
+          .cert-card h2 {
+            font-size: 2rem !important;
+          }
+
+          .cert-card a {
+            padding: 15px 16px !important;
+            font-size: 14px !important;
+          }
+
+          .project-image {
+            height: 154px !important;
+          }
+
+          .section-block {
+            padding: 56px 0 !important;
+          }
+
+          .about-stack p {
+            font-size: 1.38rem !important;
+            line-height: 1.32 !important;
+          }
+
+          .capabilities-grid {
+            gap: 14px !important;
           }
 
           .tech-grid {
-            grid-template-columns: 1fr !important;
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 12px !important;
+          }
+
+          .tech-card {
+            min-height: 158px;
+            padding: 16px 12px !important;
+          }
+
+          .tech-card h3 {
+            font-size: 14px !important;
+            line-height: 1.2 !important;
+          }
+
+          .tech-card p {
+            font-size: 12px !important;
+          }
+
+          .contact-grid {
+            gap: 28px !important;
+          }
+
+          .contact-card {
+            gap: 20px !important;
           }
 
           .contact-email-row {
@@ -1073,6 +1232,21 @@ export default function Home() {
 
           .contact-email-text {
             overflow-wrap: anywhere;
+          }
+        }
+
+        @media (max-width: 380px) {
+          .hero-title,
+          .hero-subtitle {
+            font-size: 2.05rem !important;
+          }
+
+          .hero-actions a {
+            font-size: 14px !important;
+          }
+
+          .tech-grid {
+            grid-template-columns: 1fr !important;
           }
         }
       `}</style>
