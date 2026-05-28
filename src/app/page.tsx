@@ -387,7 +387,8 @@ export default function Home() {
               <p className="hero-copy" style={{ fontSize: "clamp(1rem, 2vw, 1.25rem)", lineHeight: 1.6, color: colors.muted, maxWidth: 640, marginBottom: 40 }}>
                 Fresh off earning the {certification.title} credential, I lead high-stakes launches,
                 build operational dashboards and enablement programs, and prototype automations that
-                actually get used. If your work touches ops, partners, data, and execution, I&apos;m in my zone.
+                actually get used. If your work is in ops, partners, payroll, data, security, marketing,
+                branding, or execution, I&apos;d love to help you move it forward.
               </p>
 
               {/* CTAs */}
