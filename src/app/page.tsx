@@ -20,6 +20,7 @@ const introCallUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=
 
 const navLinks = [
   { label: "Work", href: "#work" },
+  { label: "Demos", href: "#demos" },
   { label: "Strengths", href: "#strengths" },
   { label: "Contact", href: "#contact" },
 ];
@@ -141,6 +142,23 @@ const tools = [
   { name: "HeyGen", image: "/work/heygen.jpg" },
   { name: "ElevenLabs", image: "/work/elevenlabs.jpg" },
   { name: "Rork", image: "/work/Rork Logo.jpg" },
+];
+
+const linkedinPostUrl = "https://www.linkedin.com/feed/update/urn:li:activity:7454963786379309056/";
+
+const fieldDemos = [
+  {
+    title: "Neighborhood scan",
+    label: "Lead discovery",
+    video: "/demos/wayne-fence/lead-scan-demo-1.mp4",
+    poster: "/demos/wayne-fence/lead-scan-demo-1-poster.jpg",
+  },
+  {
+    title: "Prospect list",
+    label: "Fence opportunity",
+    video: "/demos/wayne-fence/lead-scan-demo-2.mp4",
+    poster: "/demos/wayne-fence/lead-scan-demo-2-poster.jpg",
+  },
 ];
 
 export default function Home() {
@@ -326,6 +344,48 @@ export default function Home() {
               </article>
             );
           })}
+        </div>
+      </section>
+
+      <section id="demos" className="demo-section">
+        <div className="page-shell demo-shell">
+          <div className="demo-copy">
+            <p className="eyebrow">LinkedIn demo</p>
+            <h2>AI agent for local lead discovery.</h2>
+            <p>
+              A Wayne Fence demo that scans neighborhoods, spots homes without fences, and turns visual demand into a ranked outreach list.
+            </p>
+            <div className="demo-stats" aria-label="Demo highlights">
+              <span>50 leads</span>
+              <span>10 seconds</span>
+              <span>$100K+ signal</span>
+            </div>
+            <a className="button button-light demo-link" href={linkedinPostUrl} target="_blank" rel="noreferrer">
+              View LinkedIn post <ExternalLink aria-hidden="true" />
+            </a>
+          </div>
+
+          <div className="demo-media-grid">
+            {fieldDemos.map((demo) => (
+              <figure className="demo-media" key={demo.title}>
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  poster={demo.poster}
+                  preload="metadata"
+                  aria-label={`${demo.title} demo loop`}
+                >
+                  <source src={demo.video} type="video/mp4" />
+                </video>
+                <figcaption>
+                  <span>{demo.label}</span>
+                  <strong>{demo.title}</strong>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -885,6 +945,130 @@ export default function Home() {
           padding: 7px 10px;
         }
 
+        .demo-section {
+          padding: 16px 0 104px;
+          background: var(--paper);
+        }
+
+        .demo-shell {
+          display: grid;
+          grid-template-columns: minmax(0, 0.78fr) minmax(420px, 1.22fr);
+          gap: 34px;
+          align-items: stretch;
+          padding: 34px;
+          border: 1px solid rgba(10, 15, 17, 0.1);
+          border-radius: 8px;
+          background:
+            linear-gradient(135deg, rgba(216, 255, 87, 0.44), rgba(127, 200, 255, 0.32)),
+            rgba(255, 255, 255, 0.62);
+        }
+
+        .demo-copy {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: space-between;
+          min-height: 520px;
+          padding: 18px 0 6px;
+        }
+
+        .demo-copy h2 {
+          max-width: 8ch;
+          font-size: clamp(2.9rem, 6vw, 5.6rem);
+          font-weight: 850;
+          letter-spacing: 0;
+          line-height: 0.9;
+        }
+
+        .demo-copy > p:not(.eyebrow) {
+          max-width: 440px;
+          margin-top: 24px;
+          color: rgba(10, 15, 17, 0.68);
+          font-size: 17px;
+          font-weight: 560;
+          line-height: 1.48;
+        }
+
+        .demo-stats {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+          margin: 32px 0;
+        }
+
+        .demo-stats span {
+          border: 1px solid rgba(10, 15, 17, 0.12);
+          border-radius: 999px;
+          background: rgba(255, 255, 255, 0.58);
+          color: rgba(10, 15, 17, 0.78);
+          font-size: 12px;
+          font-weight: 800;
+          padding: 9px 12px;
+        }
+
+        .demo-link {
+          width: auto;
+        }
+
+        .demo-media-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 16px;
+          min-width: 0;
+        }
+
+        .demo-media {
+          position: relative;
+          min-width: 0;
+          overflow: hidden;
+          margin: 0;
+          border: 1px solid rgba(255, 255, 255, 0.68);
+          border-radius: 8px;
+          background: #e9f0df;
+          box-shadow: 0 24px 64px rgba(10, 15, 17, 0.13);
+        }
+
+        .demo-media:nth-child(2) {
+          transform: translateY(42px);
+        }
+
+        .demo-media video {
+          display: block;
+          width: 100%;
+          aspect-ratio: 1;
+          object-fit: cover;
+        }
+
+        .demo-media figcaption {
+          position: absolute;
+          left: 14px;
+          right: 14px;
+          bottom: 14px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          padding: 10px 12px;
+          border: 1px solid rgba(255, 255, 255, 0.42);
+          border-radius: 999px;
+          background: rgba(10, 15, 17, 0.76);
+          backdrop-filter: blur(12px);
+          color: #fff;
+        }
+
+        .demo-media figcaption span {
+          color: rgba(255, 255, 255, 0.72);
+          font-size: 11px;
+          font-weight: 760;
+          text-transform: uppercase;
+        }
+
+        .demo-media figcaption strong {
+          font-size: 13px;
+          font-weight: 820;
+          line-height: 1;
+        }
+
         .strength-section {
           padding: 94px 0;
           background: var(--ink);
@@ -1176,6 +1360,14 @@ export default function Home() {
             flex-direction: row;
             flex-wrap: wrap;
           }
+
+          .demo-shell {
+            grid-template-columns: 1fr;
+          }
+
+          .demo-copy {
+            min-height: 0;
+          }
         }
 
         @media (max-width: 820px) {
@@ -1270,6 +1462,7 @@ export default function Home() {
           }
 
           .work-section,
+          .demo-section,
           .strength-section,
           .tool-section {
             padding: 68px 0;
@@ -1286,6 +1479,42 @@ export default function Home() {
           .project-card-featured .project-image,
           .project-image {
             aspect-ratio: 1.36;
+          }
+
+          .demo-shell {
+            padding: 22px;
+            gap: 24px;
+          }
+
+          .demo-copy h2 {
+            max-width: 9ch;
+          }
+
+          .demo-copy > p:not(.eyebrow) {
+            margin-top: 18px;
+            font-size: 15px;
+          }
+
+          .demo-stats {
+            margin: 24px 0;
+          }
+
+          .demo-media-grid {
+            gap: 12px;
+          }
+
+          .demo-media:nth-child(2) {
+            transform: translateY(24px);
+          }
+
+          .demo-media figcaption {
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            align-items: flex-start;
+            flex-direction: column;
+            border-radius: 14px;
+            gap: 4px;
           }
 
           .strength-shell {
@@ -1382,6 +1611,14 @@ export default function Home() {
 
           .project-title-row h3 {
             font-size: 1.22rem;
+          }
+
+          .demo-media-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .demo-media:nth-child(2) {
+            transform: none;
           }
 
           .contact-actions .button {
