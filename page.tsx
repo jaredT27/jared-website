@@ -7,7 +7,7 @@ import { ArrowRight, Sparkles, Check, Mail, Calendar, Menu, Video, Zap, Globe, B
 const navLinks = [
   { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
-  { label: "Contact", href: "https://mail.google.com/mail/?view=cm&fs=1&to=Jared@LocalMotionAI.com&su=Inquiry%20from%20website&body=Hi%20Jared%2C%0A%0AI'd%20like%20to%20get%20in%20touch%20about..." },
+  { label: "Contact", href: "https://mail.google.com/mail/?view=cm&fs=1&to=Jared@clauffice.com&su=Inquiry%20from%20website&body=Hi%20Jared%2C%0A%0AI'd%20like%20to%20get%20in%20touch%20about..." },
 ];
 
 const featuredChips = [
@@ -202,7 +202,7 @@ export default function Home() {
 
           {/* Hire me button */}
           <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=Jared@LocalMotionAI.com&su=Inquiry%20from%20website&body=Hi%20Jared%2C%0A%0AI'd%20like%20to%20discuss%20a%20project..."
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=Jared@clauffice.com&su=Inquiry%20from%20website&body=Hi%20Jared%2C%0A%0AI'd%20like%20to%20discuss%20a%20project..."
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -550,7 +550,7 @@ export default function Home() {
                 </div>
 
                 <a
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=Jared@LocalMotionAI.com&su=Let's%20book%20a%2015-min%20intro&body=Hi%20Jared%2C%0A%0AI'd%20like%20to%20book%20a%2015-min%20intro%20call%20to%20discuss%20a%20potential%20project.%0A%0A"
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=Jared@clauffice.com&su=Let's%20book%20a%2015-min%20intro&body=Hi%20Jared%2C%0A%0AI'd%20like%20to%20book%20a%2015-min%20intro%20call%20to%20discuss%20a%20potential%20project.%0A%0A"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
@@ -581,11 +581,11 @@ export default function Home() {
                     cursor: "pointer"
                   }}
                     onClick={() => {
-                      navigator.clipboard.writeText("Jared@LocalMotionAI.com");
+                      navigator.clipboard.writeText("Jared@clauffice.com");
                       alert("Email copied to clipboard!");
                     }}
                   >
-                    <span style={{ fontWeight: 600 }}>Jared@LocalMotionAI.com</span>
+                    <span style={{ fontWeight: 600 }}>Jared@clauffice.com</span>
                     <div style={{
                       width: 32,
                       height: 32,

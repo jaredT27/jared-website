@@ -3,130 +3,123 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { ArrowRight, Sparkles, Check, BadgeCheck, ExternalLink, Menu, X } from "lucide-react";
+import {
+  ArrowRight,
+  BadgeCheck,
+  Copy,
+  ExternalLink,
+  Mail,
+  Menu,
+  X,
+} from "lucide-react";
 
-// ===== DATA =====
-const contactMailUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=Jared@LocalMotionAI.com&su=Inquiry%20from%20website&body=Hi%20Jared%2C%0A%0AI'd%20like%20to%20get%20in%20touch%20about...";
-const hireMeUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=Jared@LocalMotionAI.com&su=Inquiry%20from%20website&body=Hi%20Jared%2C%0A%0AI'd%20like%20to%20discuss%20a%20project...";
-const introCallUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=Jared@LocalMotionAI.com&su=Let's%20book%20a%2015-min%20intro&body=Hi%20Jared%2C%0A%0AI'd%20like%20to%20book%20a%2015-min%20intro%20call%20to%20discuss%20a%20potential%20project.%0A%0A";
+const email = "Jared@clauffice.com";
+const contactMailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=Inquiry%20from%20website&body=Hi%20Jared%2C%0A%0AI'd%20like%20to%20get%20in%20touch%20about...`;
+const hireMeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=Inquiry%20from%20website&body=Hi%20Jared%2C%0A%0AI'd%20like%20to%20discuss%20a%20project...`;
+const introCallUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=Let's%20book%20a%2015-min%20intro&body=Hi%20Jared%2C%0A%0AI'd%20like%20to%20book%20a%2015-min%20intro%20call%20to%20discuss%20a%20potential%20project.%0A%0A`;
 
 const navLinks = [
   { label: "Work", href: "#work" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: contactMailUrl },
+  { label: "Strengths", href: "#strengths" },
+  { label: "Contact", href: "#contact" },
 ];
 
-const featuredChips = [
-  "Claude Certified Architect (2026)",
-  "Tesla Solar Roof, C&I and Residential Programs",
-  "Solar Sentinel — interconnection queue intelligence",
-  "MyTinyTale.ai — AI storytelling product",
-  "Palm Cipher — AI palm reading + oracle cards",
-  "Pinchr.AI — AI product experience",
-  "ExecClaw — guided setup + onboarding",
-  "LocalMotionAI — AI CRM + automations",
+const proofMarks = [
+  "Claude Certified Architect",
+  "Energy + SaaS launches",
+  "AI workflows that ship",
 ];
 
 const projects = [
   {
-    title: "Tesla Solar Roof, C&I and Residential Programs",
-    description: "Launch execution, readiness, and operational dashboards across clean energy programs.",
-    tags: ["Program", "Dashboards", "GTM", "Energy"],
-    image: "/work/solar.jpg",
-  },
-  {
-    title: "Solar Sentinel — interconnection queue intelligence",
-    description: "Daily queue intelligence with Telegram alerts for new entries, capacity shifts, and withdrawals with map context.",
-    tags: ["Solar", "Energy", "Alerts", "Data"],
+    title: "Solar Sentinel",
+    eyebrow: "Energy intelligence",
+    description: "Queue alerts, map context, and daily signal for solar teams.",
+    tags: ["Solar", "Data"],
     image: "/work/solar-sentinel-queue.png",
     href: "https://sentinel-alerts.vercel.app/",
+    featured: true,
   },
   {
-    title: "MyTinyTale.ai — AI storytelling product",
-    description: "Built and launched an AI storytelling product from concept → live site, focused on UX and conversion.",
-    tags: ["AI product", "Web app", "UX", "Growth"],
+    title: "MyTinyTale.ai",
+    eyebrow: "AI product",
+    description: "A fast storytelling product from concept to live launch.",
+    tags: ["AI", "UX"],
     image: "/work/mytt.png",
     href: "https://mytinytale.ai",
   },
   {
-    title: "Palm Cipher — AI palm reading + oracle cards",
-    description: "Cinematic AI palm readings with shareable mystical oracle cards, built with a fast, privacy-forward upload flow.",
-    tags: ["AI product", "Computer vision", "UX", "Launch"],
+    title: "Palm Cipher",
+    eyebrow: "Consumer AI",
+    description: "Cinematic readings with a simple, private upload flow.",
+    tags: ["Vision", "Launch"],
     image: "/work/palmcipher.jpg",
     href: "https://palmcipher.com",
   },
   {
     title: "Pinchr.AI",
-    description: "The matchmaking platform for AI agents. Built for the Agent Economy.",
-    tags: ["AI product", "UX", "Brand", "Build"],
+    eyebrow: "Agent platform",
+    description: "A matchmaking experience built for the agent economy.",
+    tags: ["Brand", "Build"],
     image: "/work/pinchr.png",
     href: "https://pinchr.ai",
   },
   {
-    title: "ExecClaw — guided setup + onboarding",
-    description: "Streamlined onboarding flow designed to accelerate user activation with clean UX and conversion-focused steps.",
-    tags: ["Onboarding", "UX", "MVP", "Deploy"],
-    image: "/work/execclaw.png",
-    href: "https://execclaw.com",
-  },
-  {
-    title: "LocalMotionAI — AI CRM + automations",
-    description: "Lead capture → instant follow-up → booked jobs. Workflows, messaging, reviews, and ops dashboards.",
-    tags: ["AI workflows", "CRM", "Automation", "Ops"],
+    title: "LocalMotionAI",
+    eyebrow: "CRM automation",
+    description: "Lead capture, instant follow-up, reviews, and ops flows.",
+    tags: ["CRM", "Automation"],
     image: "/work/localmotion-new.png",
     href: "https://localmotionaivisibile.lovable.app",
   },
   {
-    title: "Tradenostix — analytics product work",
-    description: "Analytics dashboards and reporting tools for financial trading workflows.",
-    tags: ["Analytics", "Finance", "Dashboards", "UX"],
+    title: "ExecClaw",
+    eyebrow: "Onboarding",
+    description: "Guided setup shaped around activation and momentum.",
+    tags: ["MVP", "UX"],
+    image: "/work/execclaw.png",
+    href: "https://execclaw.com",
+  },
+  {
+    title: "Tesla Solar Programs",
+    eyebrow: "Launch operations",
+    description: "Readiness, dashboards, and field execution across programs.",
+    tags: ["Energy", "GTM"],
+    image: "/work/solar.jpg",
+  },
+  {
+    title: "Tradenostix",
+    eyebrow: "Analytics",
+    description: "Trading workflow reporting and decision support.",
+    tags: ["Finance", "BI"],
     image: "/work/tradenostix.png",
     href: "https://coinbureau.com/services/tradenostix-analytics-tool",
   },
   {
-    title: "Insights — reporting & decision support",
-    description: "Data-driven insights platform for operational decision-making and performance tracking.",
-    tags: ["Reporting", "Data", "BI", "Product"],
+    title: "Insights",
+    eyebrow: "Reporting",
+    description: "Operational intelligence for teams that need clarity fast.",
+    tags: ["Data", "Product"],
     image: "/work/insights-new.png",
   },
 ];
 
-const capabilities = [
+const strengths = [
   {
-    title: "Product & Program Leadership",
-    bullets: ["Launch planning + execution", "Operating cadence", "Stakeholder alignment"],
+    title: "Launch",
+    text: "Turn fuzzy ideas into shipped plans, clean scopes, and usable products.",
   },
   {
-    title: "Go-to-Market + Enablement",
-    bullets: ["Partner readiness playbooks", "Sales enablement", "Training programs"],
+    title: "Automate",
+    text: "Build AI workflows, alerts, and CRM systems around real operating needs.",
   },
   {
-    title: "Dashboards + Analytics",
-    bullets: ["Power BI / SQL", "KPI reporting", "Performance insights"],
+    title: "Measure",
+    text: "Create dashboards and reporting loops that help teams decide faster.",
   },
   {
-    title: "Automation + AI Agents",
-    bullets: ["Workflow automation", "AI assistants", "Process optimization"],
-  },
-  {
-    title: "Partnerships + Vendor Ops",
-    bullets: ["Partner onboarding", "Vendor management", "Contract operations"],
-  },
-  {
-    title: "Launch Playbooks + Process",
-    bullets: ["Go-live checklists", "Process design", "Quality assurance"],
-  },
-  {
-    title: "Digital Marketing",
-    bullets: ["SEO & Content Strategy", "Paid Acquisition (Ads)", "Social Growth"],
-  },
-  {
-    title: "Web App & Native iOS Build",
-    bullets: ["React / Next.js Apps", "Swift / SwiftUI Mobile", "Cursor + Lovable Workflows"],
-  },
-  {
-    title: "MVP & SaaS Development",
-    bullets: ["Idea to Launch", "Rapid Prototyping", "Scalable Infrastructure"],
+    title: "Align",
+    text: "Keep partners, vendors, and stakeholders moving in the same direction.",
   },
 ];
 
@@ -137,1120 +130,1284 @@ const certification = {
   verifyUrl: "https://verify.skilljar.com/c/pg7kobvx7hcw",
 };
 
-// ===== STYLES =====
-const colors = {
-  sky1: "#B5D4E8",
-  sky2: "#CFE7F8",
-  sky3: "#91B9D3",
-  white: "#FFFFFF",
-  text: "#0B0F14",
-  muted: "rgba(11, 15, 20, 0.55)",
-  muted2: "rgba(11, 15, 20, 0.35)",
-  border: "rgba(11, 15, 20, 0.10)",
-  grayBg: "#f8f9fa",
-};
-
-const heroGradient = `
-  radial-gradient(ellipse 120% 80% at 50% 0%, ${colors.sky2} 0%, transparent 50%),
-  radial-gradient(ellipse 100% 60% at 20% 100%, ${colors.sky1} 0%, transparent 50%),
-  radial-gradient(ellipse 80% 50% at 80% 80%, ${colors.sky3} 0%, transparent 50%),
-  linear-gradient(180deg, ${colors.sky2} 0%, ${colors.sky1} 30%, ${colors.white} 100%)
-`;
-
-const techStack = [
-  { name: "HeyGen", desc: "AI video generation", image: "/work/heygen.jpg" },
-  { name: "Grok", desc: "AI chatbot platform", image: "/work/grok.png" },
-  { name: "Vercel", desc: "Deployment & hosting", image: "/work/vercel.png" },
-  { name: "Gemini", desc: "Google's AI model", image: "/work/Gemini.png" },
-  { name: "ChatGPT", desc: "OpenAI language model", image: "/work/chatgpt.png" },
-  { name: "GoHighLevel", desc: "AI CRM & Automation", image: "/work/gohighlevel.png" },
-  { name: "Envato", desc: "Digital Assets", image: "/work/envato.png" },
-  { name: "Lovable", desc: "AI Full-stack Builder", image: "/work/lovable-icon-bg-light.png" },
-  { name: "Rork", desc: "AI Browser", image: "/work/rork.jpg" },
-  { name: "Claude", desc: "Anthropic's AI model", image: "/work/claude.jpg" },
-  { name: "GitHub Copilot", desc: "AI code assistant", image: "/work/github.png" },
-  { name: "n8n", desc: "Workflow automation", image: "/work/n8n.png" },
-  { name: "ElevenLabs", desc: "AI voice generation", image: "/work/elevenlabs.jpg" },
-  { name: "imagine.art", desc: "AI image generation", image: "/work/imagineart.jpg" },
-  { name: "Antigravity", desc: "Google's agentic IDE", image: "/work/antigravity.png" },
+const tools = [
+  { name: "Claude", image: "/work/claude.jpg" },
+  { name: "ChatGPT", image: "/work/chatgpt.png" },
+  { name: "Vercel", image: "/work/vercel.png" },
+  { name: "n8n", image: "/work/n8n.png" },
+  { name: "GoHighLevel", image: "/work/gohighlevel.png" },
+  { name: "GitHub", image: "/work/github.png" },
+  { name: "Gemini", image: "/work/Gemini.png" },
+  { name: "HeyGen", image: "/work/heygen.jpg" },
+  { name: "ElevenLabs", image: "/work/elevenlabs.jpg" },
+  { name: "Rork", image: "/work/Rork Logo.jpg" },
 ];
 
 export default function Home() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const copyEmail = async () => {
+    await navigator.clipboard.writeText(email);
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 1800);
+  };
 
   return (
-    <div style={{ minHeight: "100vh", background: colors.white, color: colors.text, fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif" }}>
-
-      {/* ===== HEADER ===== */}
-      <header
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 50,
-          background: mobileNavOpen ? "rgba(255, 255, 255, 0.88)" : "transparent",
-          backdropFilter: mobileNavOpen ? "blur(14px)" : undefined,
-        }}
-      >
-        <div className="page-shell header-row" style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
-          {/* Logo */}
-          <Link href="#" style={{ display: "flex", alignItems: "center", textDecoration: "none" }} onClick={() => setMobileNavOpen(false)}>
+    <main className="site-frame">
+      <header className={`site-header ${mobileNavOpen ? "is-open" : ""}`}>
+        <div className="page-shell header-row">
+          <Link
+            className="brand-mark"
+            href="#"
+            aria-label="Jared Theaman home"
+            onClick={() => setMobileNavOpen(false)}
+          >
             <Image
               src="/newlogo.png"
-              alt="JT Logo"
-              width={40}
-              height={40}
+              alt=""
+              width={42}
+              height={42}
               priority
-              style={{ width: 40, height: 40, objectFit: "contain" }}
+              style={{ objectFit: "contain" }}
             />
           </Link>
 
-          {/* Center Nav */}
-          <nav style={{ display: "flex", alignItems: "center", gap: 32 }} className="desktop-nav">
+          <nav className="desktop-nav" aria-label="Primary navigation">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                style={{ fontSize: 14, fontWeight: 500, color: colors.muted, textDecoration: "none", transition: "color 0.2s" }}
-                onMouseEnter={(e) => e.currentTarget.style.color = colors.text}
-                onMouseLeave={(e) => e.currentTarget.style.color = colors.muted}
-                target={link.href.startsWith("http") ? "_blank" : undefined}
-                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              >
+              <a key={link.href} href={link.href}>
                 {link.label}
               </a>
             ))}
           </nav>
 
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            {/* Hire me button */}
-            <a
-              href={hireMeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="desktop-hire"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 6,
-                padding: "10px 20px",
-                borderRadius: 100,
-                background: colors.text,
-                color: colors.white,
-                fontSize: 14,
-                fontWeight: 600,
-                textDecoration: "none",
-                transition: "all 0.2s",
-              }}
-            >
+          <div className="header-actions">
+            <a className="button button-dark desktop-hire" href={hireMeUrl} target="_blank" rel="noreferrer">
+              <Mail aria-hidden="true" />
               Hire me
             </a>
-
             <button
               type="button"
+              className="mobile-menu-toggle"
               aria-label={mobileNavOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={mobileNavOpen}
-              className="mobile-menu-toggle"
               onClick={() => setMobileNavOpen((open) => !open)}
-              style={{
-                display: "none",
-                alignItems: "center",
-                justifyContent: "center",
-                width: 44,
-                height: 44,
-                borderRadius: 999,
-                border: `1px solid ${colors.border}`,
-                background: "rgba(255, 255, 255, 0.82)",
-                color: colors.text,
-              }}
             >
-              {mobileNavOpen ? <X style={{ width: 18, height: 18 }} /> : <Menu style={{ width: 18, height: 18 }} />}
+              {mobileNavOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
             </button>
           </div>
         </div>
 
         {mobileNavOpen ? (
-          <div className="page-shell" style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px 20px" }}>
-            <div
-              style={{
-                background: "rgba(255, 255, 255, 0.96)",
-                border: `1px solid ${colors.border}`,
-                borderRadius: 28,
-                padding: 20,
-                boxShadow: "0 24px 60px rgba(11, 15, 20, 0.12)",
-                display: "flex",
-                flexDirection: "column",
-                gap: 12,
-              }}
-            >
+          <div className="mobile-panel page-shell">
+            <div className="mobile-panel-inner">
               {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileNavOpen(false)}
-                  target={link.href.startsWith("http") ? "_blank" : undefined}
-                  rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  style={{
-                    padding: "14px 16px",
-                    borderRadius: 16,
-                    background: "#fff",
-                    border: `1px solid ${colors.border}`,
-                    color: colors.text,
-                    fontSize: 15,
-                    fontWeight: 600,
-                    textDecoration: "none",
-                  }}
-                >
+                <a key={link.href} href={link.href} onClick={() => setMobileNavOpen(false)}>
                   {link.label}
                 </a>
               ))}
-
-              <div style={{ display: "grid", gap: 12, paddingTop: 8 }}>
-                <a
-                  href={certification.verifyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setMobileNavOpen(false)}
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: 8,
-                    padding: "14px 16px",
-                    borderRadius: 16,
-                    background: "rgba(207, 231, 248, 0.55)",
-                    border: `1px solid ${colors.border}`,
-                    color: colors.text,
-                    fontSize: 15,
-                    fontWeight: 600,
-                    textDecoration: "none",
-                  }}
-                >
-                  View certification <ExternalLink style={{ width: 16, height: 16 }} />
-                </a>
-
-                <a
-                  href={hireMeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setMobileNavOpen(false)}
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: 8,
-                    padding: "14px 16px",
-                    borderRadius: 16,
-                    background: colors.text,
-                    color: colors.white,
-                    fontSize: 15,
-                    fontWeight: 600,
-                    textDecoration: "none",
-                  }}
-                >
-                  Hire me
-                </a>
-              </div>
+              <a href={hireMeUrl} target="_blank" rel="noreferrer" onClick={() => setMobileNavOpen(false)}>
+                Hire me
+              </a>
             </div>
           </div>
         ) : null}
       </header>
 
-      {/* ===== HERO ===== */}
-      <section className="hero-section" style={{ background: heroGradient, paddingTop: 140, paddingBottom: 80 }}>
-        <div className="page-shell" style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px" }}>
-          <div
-            className="hero-grid"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "minmax(0, 1.15fr) minmax(320px, 0.85fr)",
-              gap: 32,
-              alignItems: "center",
-            }}
-          >
-            <div>
-              {/* Kicker */}
-              <p className="hero-kicker" style={{ fontSize: 14, fontWeight: 500, color: colors.muted, marginBottom: 24 }}>
-                Product & Program Leader • AI Builder • Claude Certified Architect
-              </p>
-
-              {/* Headlines */}
-              <h1 className="hero-title" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em", color: colors.text, marginBottom: 8 }}>
-                I build and ship real products
-              </h1>
-              <p className="hero-subtitle" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em", color: colors.muted2, marginBottom: 32 }}>
-                fast, clean, and measurable.
-              </p>
-
-              {/* Supporting paragraph */}
-              <p className="hero-copy" style={{ fontSize: "clamp(1rem, 2vw, 1.25rem)", lineHeight: 1.6, color: colors.muted, maxWidth: 640, marginBottom: 40 }}>
-                Fresh off earning the {certification.title} credential, I lead high-stakes launches,
-                build operational dashboards and enablement programs, and prototype automations that
-                actually get used. If your work is in ops, partners, payroll, data, security, marketing,
-                branding, or execution, I&apos;d love to help you move it forward.
-              </p>
-
-              {/* CTAs */}
-              <div className="hero-actions" style={{ display: "flex", flexWrap: "wrap", gap: 16, marginBottom: 48 }}>
-                <a
-                  href="#work"
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 8,
-                    padding: "14px 28px",
-                    borderRadius: 100,
-                    background: colors.text,
-                    color: colors.white,
-                    fontSize: 15,
-                    fontWeight: 600,
-                    textDecoration: "none",
-                  }}
-                >
-                  See Work <ArrowRight style={{ width: 16, height: 16 }} />
-                </a>
-                <a
-                  href={certification.verifyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 8,
-                    padding: "14px 28px",
-                    borderRadius: 100,
-                    background: "rgba(255, 255, 255, 0.72)",
-                    backdropFilter: "blur(8px)",
-                    color: colors.text,
-                    fontSize: 15,
-                    fontWeight: 600,
-                    textDecoration: "none",
-                    border: `1px solid ${colors.border}`,
-                  }}
-                >
-                  Verify credential <ExternalLink style={{ width: 16, height: 16 }} />
-                </a>
-              </div>
-
-              {/* Chips */}
-              <div className="hero-chip-cloud" style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
-                {featuredChips.map((chip) => (
-                  <span
-                    key={chip}
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: 8,
-                      padding: "10px 18px",
-                      background: "rgba(255, 255, 255, 0.7)",
-                      backdropFilter: "blur(8px)",
-                      border: `1px solid ${colors.border}`,
-                      borderRadius: 100,
-                      fontSize: 13,
-                      fontWeight: 500,
-                      color: colors.text,
-                    }}
-                  >
-                    <Sparkles style={{ width: 14, height: 14, color: colors.muted }} />
-                    {chip}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <aside
-              id="certification"
-              className="cert-card"
-              style={{
-                position: "relative",
-                overflow: "hidden",
-                borderRadius: 32,
-                padding: 32,
-                background: "linear-gradient(155deg, #d97553 0%, #e38b68 38%, #f1b39d 100%)",
-                boxShadow: "0 30px 80px rgba(217, 117, 83, 0.28)",
-                color: colors.white,
-              }}
-            >
-              <div
-                style={{
-                  position: "absolute",
-                  width: 240,
-                  height: 240,
-                  borderRadius: "50%",
-                  background: "rgba(255, 255, 255, 0.14)",
-                  top: -72,
-                  right: -72,
-                }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  width: 180,
-                  height: 180,
-                  borderRadius: "50%",
-                  background: "rgba(255, 255, 255, 0.10)",
-                  bottom: -90,
-                  left: -50,
-                }}
-              />
-
-              <div style={{ position: "relative", display: "flex", flexDirection: "column", gap: 24 }}>
-                <div
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 10,
-                    alignSelf: "flex-start",
-                    padding: "10px 16px",
-                    borderRadius: 999,
-                    background: "rgba(255, 255, 255, 0.16)",
-                    border: "1px solid rgba(255, 255, 255, 0.22)",
-                    fontSize: 13,
-                    fontWeight: 600,
-                    letterSpacing: "0.02em",
-                  }}
-                >
-                  <BadgeCheck style={{ width: 16, height: 16 }} />
-                  Newly certified
-                </div>
-
-                <div>
-                  <p style={{ marginBottom: 10, fontSize: 13, fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255, 255, 255, 0.76)" }}>
-                    Issued {certification.issued}
-                  </p>
-                  <h2 style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)", lineHeight: 1, letterSpacing: "-0.03em", fontWeight: 700, marginBottom: 16 }}>
-                    {certification.title}
-                  </h2>
-                  <p style={{ fontSize: 16, lineHeight: 1.7, color: "rgba(255, 255, 255, 0.9)", maxWidth: 420 }}>
-                    A verified credential that sharpens the way I design AI-powered workflows, agent experiences,
-                    and production-ready systems.
-                  </p>
-                </div>
-
-                <div
-                  className="cert-stats"
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-                    gap: 14,
-                  }}
-                >
-                  <div
-                    style={{
-                      padding: 18,
-                      borderRadius: 20,
-                      background: "rgba(255, 255, 255, 0.14)",
-                      border: "1px solid rgba(255, 255, 255, 0.22)",
-                    }}
-                  >
-                    <p style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(255, 255, 255, 0.74)", marginBottom: 8 }}>
-                      Credential ID
-                    </p>
-                    <p style={{ fontSize: 18, fontWeight: 600, lineHeight: 1.4 }}>
-                      {certification.credentialId}
-                    </p>
-                  </div>
-                  <div
-                    style={{
-                      padding: 18,
-                      borderRadius: 20,
-                      background: "rgba(255, 255, 255, 0.14)",
-                      border: "1px solid rgba(255, 255, 255, 0.22)",
-                    }}
-                  >
-                    <p style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(255, 255, 255, 0.74)", marginBottom: 8 }}>
-                      Verification
-                    </p>
-                    <p style={{ fontSize: 18, fontWeight: 600, lineHeight: 1.4 }}>
-                      Skilljar hosted
-                    </p>
-                  </div>
-                </div>
-
-                <a
-                  href={certification.verifyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    gap: 12,
-                    padding: "18px 20px",
-                    borderRadius: 20,
-                    background: colors.white,
-                    color: "#b24f2d",
-                    fontSize: 15,
-                    fontWeight: 700,
-                    textDecoration: "none",
-                    boxShadow: "0 14px 30px rgba(116, 44, 21, 0.18)",
-                  }}
-                >
-                  View verified certification
-                  <ExternalLink style={{ width: 18, height: 18 }} />
-                </a>
-              </div>
-            </aside>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== FEATURED WORK ===== */}
-      <section id="work" className="section-block" style={{ background: `linear-gradient(180deg, ${colors.white} 0%, #f8fbfd 50%, ${colors.white} 100%)`, padding: "100px 0", scrollMarginTop: 96 }}>
-        <div className="page-shell" style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px" }}>
-          <h2 className="section-heading" style={{ fontSize: "clamp(1.75rem, 4vw, 2.5rem)", fontWeight: 700, lineHeight: 1.2, letterSpacing: "-0.01em", marginBottom: 16 }}>Featured Work</h2>
-          <p className="section-intro" style={{ fontSize: "clamp(1rem, 2vw, 1.25rem)", lineHeight: 1.6, color: colors.muted, marginBottom: 48, maxWidth: 600 }}>
-            A mix of product launches, program execution, and internal tooling — all designed for clarity, speed, and results.
-          </p>
-
-          {/* 2-column grid on desktop, 1 column on mobile */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 24 }} className="work-grid">
-            {projects.map((project) => {
-              const CardWrapper = project.href ? 'a' : 'div';
-              const linkProps = project.href ? { href: project.href, target: "_blank", rel: "noreferrer" } : {};
-              return (
-                <CardWrapper
-                  key={project.title}
-                  {...linkProps}
-                  className="project-card"
-                  style={{
-                    background: colors.white,
-                    border: `1px solid ${colors.border}`,
-                    borderRadius: 24,
-                    overflow: "hidden",
-                    boxShadow: "0 4px 20px rgba(11, 15, 20, 0.08)",
-                    transition: "all 0.2s",
-                    textDecoration: "none",
-                    color: "inherit",
-                    display: "block",
-                    cursor: project.href ? "pointer" : "default",
-                  }}
-                >
-                  {/* Project Image */}
-                  <div className="project-image" style={{ position: "relative", height: 200, overflow: "hidden" }}>
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      style={{
-                        objectFit: "cover",
-                      }}
-                    />
-                    <div style={{
-                      position: "absolute",
-                      inset: 0,
-                      background: "linear-gradient(to top, rgba(0,0,0,0.1) 0%, transparent 40%)",
-                    }} />
-                  </div>
-                  {/* Project Info */}
-                  <div className="project-body" style={{ padding: 24 }}>
-                    <h3 style={{ fontWeight: 600, fontSize: 18, marginBottom: 8 }}>{project.title}</h3>
-                    <p style={{ fontSize: 14, color: colors.muted, marginBottom: 16, lineHeight: 1.6 }}>{project.description}</p>
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          style={{ fontSize: 12, padding: "6px 12px", borderRadius: 100, background: "#f5f5f5", color: colors.muted }}
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </CardWrapper>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== ABOUT ===== */}
-      <section id="about" className="section-block" style={{ background: colors.grayBg, padding: "100px 0", scrollMarginTop: 96 }}>
-        <div className="page-shell" style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px" }}>
-          <div className="about-stack" style={{ display: "flex", flexWrap: "wrap", gap: 48 }}>
-            {/* Left label */}
-            <div className="about-label" style={{ width: 180, flexShrink: 0 }}>
-              <span style={{ fontSize: 14, fontWeight: 500, color: colors.muted }}>About me</span>
-            </div>
-
-            {/* Right content */}
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <p style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)", fontWeight: 700, lineHeight: 1.4, letterSpacing: "-0.01em" }}>
-                I&apos;m a NJ-based product & program leader and {certification.title} building products end to end.
-                I combine execution, systems thinking, and AI
-                automation where it actually works: one owner, zero bloat, direct collaboration.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== CAPABILITIES ===== */}
-      <section className="section-block" style={{ background: colors.white, padding: "100px 0" }}>
-        <div className="page-shell" style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px" }}>
-          <h2 className="section-heading" style={{ fontSize: "clamp(1.75rem, 4vw, 2.5rem)", fontWeight: 700, lineHeight: 1.2, letterSpacing: "-0.01em", marginBottom: 48, textAlign: "center" }}>Capabilities</h2>
-
-          <div className="capabilities-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 24 }}>
-            {capabilities.map((cap) => (
-              <div
-                key={cap.title}
-                className="capability-card"
-                style={{
-                  background: colors.white,
-                  border: `1px solid ${colors.border}`,
-                  borderRadius: 24,
-                  padding: 24,
-                  boxShadow: "0 4px 20px rgba(11, 15, 20, 0.08)",
-                }}
-              >
-                <h3 style={{ fontWeight: 600, fontSize: 18, marginBottom: 16 }}>{cap.title}</h3>
-                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 8 }}>
-                  {cap.bullets.map((bullet) => (
-                    <li key={bullet} style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 14, color: colors.muted }}>
-                      <Check style={{ width: 16, height: 16, marginTop: 2, color: colors.sky3 }} />
-                      {bullet}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== TECH STACK ===== */}
-      <section className="section-block" style={{ background: "#0b0f14", padding: "100px 0", color: "#fff" }}>
-        <div className="page-shell" style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px" }}>
-          <h2 className="section-heading" style={{ fontSize: "clamp(2rem, 5vw, 3rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: 16, textAlign: "center" }}>
-            My Tech Stack
-          </h2>
-          <p className="section-intro" style={{ fontSize: "clamp(1rem, 2vw, 1.125rem)", lineHeight: 1.6, color: "#888", textAlign: "center", marginBottom: 64 }}>
-            Powered by industry-leading AI tools and platforms
-          </p>
-
-          <div className="tech-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))", gap: 16 }}>
-            {techStack.map((tool) => (
-              <div
-                key={tool.name}
-                className="tech-card"
-                style={{
-                  background: "#161b22",
-                  border: "1px solid #30363d",
-                  borderRadius: 16,
-                  padding: 24,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  textAlign: "center",
-                  transition: "all 0.2s",
-                }}
-              >
-                <div style={{
-                  width: 64,
-                  height: 64,
-                  background: "#21262d",
-                  borderRadius: 16,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginBottom: 16,
-                  overflow: "hidden",
-                  padding: 8
-                }}>
-                  <Image
-                    src={tool.image}
-                    alt={tool.name}
-                    width={48}
-                    height={48}
-                    sizes="48px"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "contain",
-                      filter: tool.name === "GitHub Copilot" ? "invert(1)" : "none"
-                    }}
-                  />
-                </div>
-                <h3 style={{ fontSize: 16, fontWeight: 600, color: "#fff", marginBottom: 4 }}>{tool.name}</h3>
-                <p style={{ fontSize: 13, color: "#8b949e", lineHeight: 1.4 }}>{tool.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== BOTTOM CONTACT ===== */}
-      <section className="section-block" style={{ background: colors.grayBg, padding: "100px 0" }}>
-        <div className="page-shell" style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px" }}>
-          <div className="contact-grid" style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-            gap: 64,
-            alignItems: "center"
-          }}>
-            {/* Left Side: Text */}
-            <div>
-              <h2 className="contact-heading" style={{
-                fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
-                fontWeight: 700,
-                lineHeight: 1.1,
-                letterSpacing: "-0.02em",
-                marginBottom: 24,
-                color: colors.text
-              }}>
-                Let's build something useful.
-              </h2>
-              <p style={{
-                fontSize: "clamp(1.125rem, 2vw, 1.25rem)",
-                lineHeight: 1.6,
-                color: colors.muted,
-                maxWidth: 480
-              }}>
-                Send what you're trying to achieve + any constraints. I'll reply with a simple plan and what I'd do in the first 7 days.
-              </p>
-            </div>
-
-            {/* Right Side: Profile Card */}
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <div className="contact-card" style={{
-                background: "linear-gradient(135deg, #BFDBFE 0%, #60A5FA 100%)", // Blue gradient
-                borderRadius: 32,
-                padding: 40,
-                width: "100%",
-                maxWidth: 400,
-                boxShadow: "0 20px 40px -10px rgba(96, 165, 250, 0.3)",
-                color: "#fff",
-                display: "flex",
-                flexDirection: "column",
-                gap: 24
-              }}>
-                {/* Profile Image */}
-                <div style={{
-                  width: 80,
-                  height: 80,
-                  borderRadius: 20,
-                  background: "#fff",
-                  padding: 4,
-                  overflow: "hidden",
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.1)"
-                }}>
-                  <Image
-                    src="/me.png"
-                    alt="Jared Theaman"
-                    width={80}
-                    height={80}
-                    sizes="80px"
-                    priority
-                    style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: 16 }}
-                  />
-                </div>
-
-                <div>
-                  <h3 style={{ fontSize: 24, fontWeight: 700, lineHeight: 1.2, marginBottom: 8 }}>
-                    Book a 15-min<br />intro call
-                  </h3>
-                </div>
-
-                <a
-                  href={introCallUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "100%",
-                    padding: "16px",
-                    background: colors.text, // Dark button
-                    color: "#fff",
-                    borderRadius: 16,
-                    fontWeight: 600,
-                    textDecoration: "none",
-                    boxShadow: "0 4px 12px rgba(0,0,0,0.1)"
-                  }}
-                >
-                  Book a call
-                </a>
-
-                {/* Email Copy */}
-                <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-                  <span style={{ fontSize: 13, opacity: 0.8 }}>Prefer email?</span>
-                  <div className="contact-email-row" style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    gap: 8,
-                    cursor: "pointer"
-                  }}
-                    onClick={() => {
-                      navigator.clipboard.writeText("Jared@LocalMotionAI.com");
-                      alert("Email copied to clipboard!");
-                    }}
-                  >
-                    <span className="contact-email-text" style={{ fontWeight: 600 }}>Jared@LocalMotionAI.com</span>
-                    <div style={{
-                      width: 32,
-                      height: 32,
-                      background: "rgba(255,255,255,0.2)",
-                      borderRadius: "50%",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center"
-                    }}>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== FOOTER ===== */}
-      <footer style={{ borderTop: `1px solid ${colors.border}`, padding: "32px 0" }}>
-        <div className="page-shell footer-row" style={{ maxWidth: 1140, margin: "0 auto", padding: "0 24px", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
-          <p style={{ fontSize: 14, color: colors.muted }}>
-            © {new Date().getFullYear()} Jared Theaman. All rights reserved.
-          </p>
-          <div className="footer-links" style={{ display: "flex", alignItems: "center", gap: 24 }}>
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                style={{ fontSize: 14, color: colors.muted, textDecoration: "none" }}
-                target={link.href.startsWith("http") ? "_blank" : undefined}
-                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              >
-                {link.label}
+      <section className="hero-section">
+        <div className="page-shell hero-shell">
+          <div className="hero-copy-block">
+            <p className="eyebrow">Product and program leader / AI builder</p>
+            <h1>Jared Theaman</h1>
+            <p className="hero-line">Launches, dashboards, and AI workflows that actually ship.</p>
+            <div className="hero-actions">
+              <a className="button button-dark" href="#work">
+                See work <ArrowRight aria-hidden="true" />
               </a>
+              <a className="button button-light" href={introCallUrl} target="_blank" rel="noreferrer">
+                Book intro <ExternalLink aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+
+          <div className="hero-visual" aria-label="Selected work preview">
+            <div className="portrait-slice">
+              <Image
+                src="/me.png"
+                alt="Jared Theaman"
+                width={464}
+                height={576}
+                priority
+                sizes="(max-width: 768px) 45vw, 260px"
+              />
+            </div>
+            <div className="work-slice work-slice-large">
+              <Image
+                src="/work/solar-sentinel-queue.png"
+                alt="Solar Sentinel interface preview"
+                fill
+                priority
+                sizes="(max-width: 768px) 80vw, 430px"
+              />
+            </div>
+            <div className="work-slice work-slice-small">
+              <Image
+                src="/work/localmotion-new.png"
+                alt="LocalMotionAI interface preview"
+                fill
+                sizes="(max-width: 768px) 38vw, 190px"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="page-shell proof-row" aria-label="Highlights">
+          {proofMarks.map((mark) => (
+            <span key={mark}>{mark}</span>
+          ))}
+        </div>
+      </section>
+
+      <section id="work" className="work-section">
+        <div className="page-shell section-heading-row">
+          <div>
+            <p className="eyebrow">Selected work</p>
+            <h2>Built for motion.</h2>
+          </div>
+          <p>
+            A sharper cut of products, launch systems, and dashboards.
+          </p>
+        </div>
+
+        <div className="page-shell project-grid">
+          {projects.map((project) => {
+            const content = (
+              <>
+                <div className="project-image">
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} preview`}
+                    fill
+                    sizes={project.featured ? "(max-width: 900px) 100vw, 60vw" : "(max-width: 900px) 100vw, 33vw"}
+                  />
+                </div>
+                <div className="project-copy">
+                  <p className="project-eyebrow">{project.eyebrow}</p>
+                  <div className="project-title-row">
+                    <h3>{project.title}</h3>
+                    {project.href ? <ExternalLink aria-hidden="true" /> : null}
+                  </div>
+                  <p>{project.description}</p>
+                  <div className="tag-row">
+                    {project.tags.map((tag) => (
+                      <span key={tag}>{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </>
+            );
+
+            return project.href ? (
+              <a
+                key={project.title}
+                className={`project-card ${project.featured ? "project-card-featured" : ""}`}
+                href={project.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {content}
+              </a>
+            ) : (
+              <article
+                key={project.title}
+                className={`project-card ${project.featured ? "project-card-featured" : ""}`}
+              >
+                {content}
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
+      <section id="strengths" className="strength-section">
+        <div className="page-shell strength-shell">
+          <div className="strength-intro">
+            <p className="eyebrow">How I help</p>
+            <h2>Operator who can build.</h2>
+            <p>
+              Useful strategy, fast execution, and enough taste to keep the work clean.
+            </p>
+          </div>
+
+          <div className="strength-list">
+            {strengths.map((strength, index) => (
+              <div className="strength-row" key={strength.title}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{strength.title}</h3>
+                <p>{strength.text}</p>
+              </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="credential-section">
+        <div className="page-shell">
+          <a className="credential-band" href={certification.verifyUrl} target="_blank" rel="noreferrer">
+            <span className="credential-icon">
+              <BadgeCheck aria-hidden="true" />
+            </span>
+            <span>
+              <strong>{certification.title}</strong>
+              <small>
+                Issued {certification.issued} / ID {certification.credentialId}
+              </small>
+            </span>
+            <ExternalLink aria-hidden="true" />
+          </a>
+        </div>
+      </section>
+
+      <section className="tool-section" aria-labelledby="tool-heading">
+        <div className="page-shell tool-heading">
+          <p className="eyebrow" id="tool-heading">Tools in rotation</p>
+        </div>
+        <div className="tool-rail" aria-hidden="true">
+          <div className="tool-track">
+            {[...tools, ...tools].map((tool, index) => (
+              <div className="tool-pill" key={`${tool.name}-${index}`}>
+                <Image src={tool.image} alt="" width={32} height={32} sizes="32px" />
+                <span>{tool.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="contact-section">
+        <div className="page-shell contact-shell">
+          <div>
+            <p className="eyebrow">Contact</p>
+            <h2>Need momentum?</h2>
+            <p>
+              Send the goal, constraints, and timeline. I&apos;ll reply with the cleanest first move.
+            </p>
+          </div>
+          <div className="contact-actions">
+            <a className="button button-dark" href={introCallUrl} target="_blank" rel="noreferrer">
+              Book a call <ExternalLink aria-hidden="true" />
+            </a>
+            <button type="button" className="button button-light" onClick={copyEmail}>
+              <Copy aria-hidden="true" />
+              {copied ? "Copied" : email}
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <footer className="site-footer">
+        <div className="page-shell footer-row">
+          <p>© {new Date().getFullYear()} Jared Theaman</p>
+          <a href={contactMailUrl} target="_blank" rel="noreferrer">
+            {email}
+          </a>
         </div>
       </footer>
 
       <style>{`
-        .mobile-menu-toggle {
-          display: none !important;
+        :root {
+          --ink: #0a0f11;
+          --paper: #fbfcf7;
+          --soft: #edf2e6;
+          --line: rgba(10, 15, 17, 0.12);
+          --muted: rgba(10, 15, 17, 0.62);
+          --faint: rgba(10, 15, 17, 0.42);
+          --lime: #d8ff57;
+          --coral: #ff6b4a;
+          --blue: #7fc8ff;
         }
 
-        .hero-chip-cloud::-webkit-scrollbar {
+        .site-frame {
+          min-height: 100vh;
+          background:
+            linear-gradient(90deg, rgba(10, 15, 17, 0.035) 1px, transparent 1px),
+            linear-gradient(180deg, rgba(10, 15, 17, 0.035) 1px, transparent 1px),
+            var(--paper);
+          background-size: 48px 48px;
+          color: var(--ink);
+          font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          overflow-x: clip;
+        }
+
+        .page-shell {
+          width: min(1180px, calc(100% - 48px));
+          margin: 0 auto;
+        }
+
+        .site-header {
+          position: absolute;
+          inset: 0 0 auto;
+          z-index: 20;
+          transition: background 180ms ease, backdrop-filter 180ms ease;
+        }
+
+        .site-header.is-open {
+          background: rgba(251, 252, 247, 0.88);
+          backdrop-filter: blur(18px);
+        }
+
+        .header-row {
+          height: 76px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 24px;
+        }
+
+        .brand-mark {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 46px;
+          height: 46px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.62);
+          border: 1px solid rgba(10, 15, 17, 0.08);
+          text-decoration: none;
+        }
+
+        .desktop-nav {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 6px;
+          border: 1px solid rgba(10, 15, 17, 0.08);
+          border-radius: 999px;
+          background: rgba(255, 255, 255, 0.58);
+          backdrop-filter: blur(18px);
+        }
+
+        .desktop-nav a {
+          color: var(--muted);
+          border-radius: 999px;
+          font-size: 13px;
+          font-weight: 650;
+          padding: 9px 14px;
+          text-decoration: none;
+          transition: color 180ms ease, background 180ms ease;
+        }
+
+        .desktop-nav a:hover {
+          color: var(--ink);
+          background: rgba(10, 15, 17, 0.06);
+        }
+
+        .header-actions {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .button {
+          min-height: 46px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 9px;
+          border: 0;
+          border-radius: 999px;
+          cursor: pointer;
+          font: inherit;
+          font-size: 14px;
+          font-weight: 760;
+          line-height: 1;
+          padding: 0 19px;
+          text-decoration: none;
+          transition: transform 180ms ease, background 180ms ease, color 180ms ease, border-color 180ms ease;
+          white-space: nowrap;
+        }
+
+        .button svg {
+          width: 17px;
+          height: 17px;
+          flex: 0 0 auto;
+        }
+
+        .button:hover {
+          transform: translateY(-2px);
+        }
+
+        .button-dark {
+          background: var(--ink);
+          color: #fff;
+        }
+
+        .button-light {
+          background: rgba(255, 255, 255, 0.74);
+          border: 1px solid rgba(10, 15, 17, 0.12);
+          color: var(--ink);
+        }
+
+        .mobile-menu-toggle {
+          width: 46px;
+          height: 46px;
+          display: none;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid rgba(10, 15, 17, 0.1);
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.74);
+          color: var(--ink);
+        }
+
+        .mobile-menu-toggle svg {
+          width: 19px;
+          height: 19px;
+        }
+
+        .mobile-panel {
           display: none;
         }
 
-        .page-shell,
-        .hero-grid,
-        .hero-grid > *,
-        .work-grid,
-        .capabilities-grid,
-        .tech-grid,
-        .contact-grid {
-          min-width: 0;
+        .hero-section {
+          position: relative;
+          overflow: hidden;
+          padding: 116px 0 34px;
+          background:
+            linear-gradient(135deg, rgba(216, 255, 87, 0.84) 0%, rgba(247, 250, 239, 0.96) 36%, rgba(127, 200, 255, 0.52) 100%);
         }
 
-        .hero-chip-cloud {
-          max-width: 100%;
+        .hero-section::after {
+          content: "";
+          position: absolute;
+          inset: auto 0 0;
+          height: 130px;
+          background: linear-gradient(180deg, rgba(251, 252, 247, 0), var(--paper));
+          pointer-events: none;
         }
 
-        .project-card,
-        .capability-card,
-        .tech-card,
-        .contact-card {
+        .hero-shell {
+          position: relative;
+          z-index: 1;
+          display: grid;
+          grid-template-columns: minmax(0, 0.95fr) minmax(420px, 1.05fr);
+          align-items: center;
+          gap: 46px;
+        }
+
+        .hero-copy-block {
+          padding-top: 10px;
+        }
+
+        .hero-copy-block > * {
+          animation: riseIn 620ms ease both;
+        }
+
+        .hero-copy-block > *:nth-child(2) {
+          animation-delay: 80ms;
+        }
+
+        .hero-copy-block > *:nth-child(3) {
+          animation-delay: 160ms;
+        }
+
+        .hero-copy-block > *:nth-child(4) {
+          animation-delay: 240ms;
+        }
+
+        .eyebrow {
+          color: var(--muted);
+          font-size: 12px;
+          font-weight: 780;
+          letter-spacing: 0;
+          line-height: 1.2;
+          margin: 0 0 18px;
+          text-transform: uppercase;
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+          margin: 0;
+        }
+
+        .hero-copy-block h1 {
+          max-width: 7ch;
+          font-size: clamp(4.25rem, 9.1vw, 8.2rem);
+          font-weight: 860;
+          letter-spacing: 0;
+          line-height: 0.83;
+        }
+
+        .hero-line {
+          max-width: 640px;
+          margin-top: 30px;
+          color: rgba(10, 15, 17, 0.78);
+          font-size: clamp(1.24rem, 2vw, 1.72rem);
+          font-weight: 620;
+          letter-spacing: 0;
+          line-height: 1.2;
+        }
+
+        .hero-actions {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          margin-top: 32px;
+        }
+
+        .hero-visual {
+          position: relative;
+          min-height: 540px;
+          isolation: isolate;
+        }
+
+        .portrait-slice,
+        .work-slice {
+          position: absolute;
+          overflow: hidden;
+          border: 1px solid rgba(255, 255, 255, 0.56);
+          box-shadow: 0 28px 80px rgba(10, 15, 17, 0.18);
           transform: translateZ(0);
         }
 
-        .project-card:focus-visible,
-        .hero-actions a:focus-visible,
-        .contact-card a:focus-visible,
-        .mobile-menu-toggle:focus-visible {
-          outline: 3px solid rgba(145, 185, 211, 0.9);
-          outline-offset: 3px;
+        .portrait-slice {
+          z-index: 3;
+          right: 7%;
+          bottom: 4%;
+          width: min(260px, 42%);
+          aspect-ratio: 0.78;
+          border-radius: 44px;
+          background: #e9f0df;
         }
 
-        @media (max-width: 900px) {
+        .portrait-slice img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .work-slice-large {
+          z-index: 1;
+          left: 0;
+          top: 10%;
+          width: 76%;
+          aspect-ratio: 1.46;
+          border-radius: 34px;
+          background: #fff;
+          transform: rotate(-2deg);
+        }
+
+        .work-slice-small {
+          z-index: 2;
+          right: 0;
+          top: 3%;
+          width: 38%;
+          aspect-ratio: 1.02;
+          border-radius: 28px;
+          background: #fff;
+          transform: rotate(5deg);
+        }
+
+        .work-slice img {
+          object-fit: cover;
+        }
+
+        .proof-row {
+          position: relative;
+          z-index: 1;
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 1px;
+          margin-top: 28px;
+          overflow: hidden;
+          border: 1px solid rgba(10, 15, 17, 0.1);
+          border-radius: 24px;
+          background: rgba(10, 15, 17, 0.1);
+        }
+
+        .proof-row span {
+          min-height: 68px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 16px;
+          background: rgba(255, 255, 255, 0.66);
+          color: rgba(10, 15, 17, 0.75);
+          font-size: 13px;
+          font-weight: 740;
+          text-align: center;
+        }
+
+        .work-section {
+          padding: 92px 0 104px;
+        }
+
+        .section-heading-row {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) minmax(280px, 380px);
+          align-items: end;
+          gap: 32px;
+          margin-bottom: 34px;
+        }
+
+        .section-heading-row h2,
+        .strength-intro h2,
+        .contact-shell h2 {
+          font-size: clamp(2.45rem, 6vw, 5.3rem);
+          font-weight: 850;
+          letter-spacing: 0;
+          line-height: 0.92;
+        }
+
+        .section-heading-row > p,
+        .strength-intro > p,
+        .contact-shell > div > p {
+          color: var(--muted);
+          font-size: clamp(1rem, 1.45vw, 1.18rem);
+          font-weight: 520;
+          line-height: 1.5;
+        }
+
+        .project-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 18px;
+        }
+
+        .project-card {
+          position: relative;
+          overflow: hidden;
+          min-width: 0;
+          display: flex;
+          flex-direction: column;
+          border: 1px solid rgba(10, 15, 17, 0.1);
+          border-radius: 8px;
+          background: rgba(255, 255, 255, 0.78);
+          color: inherit;
+          text-decoration: none;
+          transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+        }
+
+        .project-card:hover {
+          border-color: rgba(10, 15, 17, 0.24);
+          box-shadow: 0 22px 60px rgba(10, 15, 17, 0.11);
+          transform: translateY(-5px);
+        }
+
+        .project-card-featured {
+          grid-column: span 2;
+          grid-row: span 2;
+        }
+
+        .project-image {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 1.48;
+          overflow: hidden;
+          background: #e8eee2;
+        }
+
+        .project-card-featured .project-image {
+          aspect-ratio: 1.72;
+        }
+
+        .project-image img {
+          object-fit: cover;
+          transition: transform 500ms ease;
+        }
+
+        .project-card:hover .project-image img {
+          transform: scale(1.045);
+        }
+
+        .project-copy {
+          display: flex;
+          flex: 1;
+          flex-direction: column;
+          padding: 22px;
+        }
+
+        .project-eyebrow {
+          color: var(--faint);
+          font-size: 12px;
+          font-weight: 760;
+          letter-spacing: 0;
+          margin-bottom: 12px;
+          text-transform: uppercase;
+        }
+
+        .project-title-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+          margin-bottom: 10px;
+        }
+
+        .project-title-row h3 {
+          min-width: 0;
+          font-size: clamp(1.18rem, 2vw, 1.6rem);
+          font-weight: 800;
+          letter-spacing: 0;
+          line-height: 1.05;
+        }
+
+        .project-title-row svg {
+          width: 18px;
+          height: 18px;
+          flex: 0 0 auto;
+          color: var(--faint);
+        }
+
+        .project-copy > p:last-of-type {
+          color: var(--muted);
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 1.48;
+        }
+
+        .tag-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 7px;
+          margin-top: auto;
+          padding-top: 22px;
+        }
+
+        .tag-row span {
+          border: 1px solid rgba(10, 15, 17, 0.1);
+          border-radius: 999px;
+          color: rgba(10, 15, 17, 0.66);
+          font-size: 12px;
+          font-weight: 720;
+          padding: 7px 10px;
+        }
+
+        .strength-section {
+          padding: 94px 0;
+          background: var(--ink);
+          color: #fff;
+        }
+
+        .strength-shell {
+          display: grid;
+          grid-template-columns: minmax(0, 0.86fr) minmax(420px, 1fr);
+          gap: 64px;
+          align-items: start;
+        }
+
+        .strength-section .eyebrow {
+          color: rgba(255, 255, 255, 0.62);
+        }
+
+        .strength-intro {
+          position: sticky;
+          top: 34px;
+        }
+
+        .strength-intro p {
+          max-width: 470px;
+          margin-top: 26px;
+          color: rgba(255, 255, 255, 0.68);
+        }
+
+        .strength-list {
+          display: grid;
+          border-top: 1px solid rgba(255, 255, 255, 0.16);
+        }
+
+        .strength-row {
+          display: grid;
+          grid-template-columns: 54px minmax(120px, 0.55fr) minmax(0, 1fr);
+          gap: 24px;
+          padding: 27px 0;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+          align-items: baseline;
+        }
+
+        .strength-row span {
+          color: var(--lime);
+          font-size: 13px;
+          font-weight: 800;
+        }
+
+        .strength-row h3 {
+          font-size: clamp(1.28rem, 2vw, 1.8rem);
+          font-weight: 810;
+          letter-spacing: 0;
+        }
+
+        .strength-row p {
+          color: rgba(255, 255, 255, 0.68);
+          font-size: 15px;
+          font-weight: 500;
+          line-height: 1.5;
+        }
+
+        .credential-section {
+          padding: 24px 0;
+          background: var(--ink);
+        }
+
+        .credential-band {
+          display: grid;
+          grid-template-columns: auto minmax(0, 1fr) auto;
+          align-items: center;
+          gap: 18px;
+          min-height: 92px;
+          padding: 18px 22px;
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          border-radius: 8px;
+          background: linear-gradient(90deg, rgba(216, 255, 87, 0.92), rgba(127, 200, 255, 0.82));
+          color: var(--ink);
+          text-decoration: none;
+          transition: transform 180ms ease;
+        }
+
+        .credential-band:hover {
+          transform: translateY(-2px);
+        }
+
+        .credential-icon {
+          width: 42px;
+          height: 42px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.5);
+        }
+
+        .credential-band svg {
+          width: 20px;
+          height: 20px;
+        }
+
+        .credential-band strong,
+        .credential-band small {
+          display: block;
+        }
+
+        .credential-band strong {
+          font-size: clamp(1.08rem, 2vw, 1.45rem);
+          font-weight: 850;
+          line-height: 1.15;
+        }
+
+        .credential-band small {
+          margin-top: 5px;
+          color: rgba(10, 15, 17, 0.7);
+          font-size: 13px;
+          font-weight: 680;
+          line-height: 1.35;
+        }
+
+        .tool-section {
+          overflow: hidden;
+          padding: 86px 0;
+          background: var(--paper);
+        }
+
+        .tool-heading {
+          margin-bottom: 18px;
+        }
+
+        .tool-rail {
+          width: 100%;
+          overflow: hidden;
+          contain: paint;
+          border-block: 1px solid rgba(10, 15, 17, 0.1);
+          background: rgba(255, 255, 255, 0.56);
+        }
+
+        .tool-track {
+          display: flex;
+          width: max-content;
+          gap: 12px;
+          padding: 18px 12px;
+          animation: toolDrift 32s linear infinite;
+        }
+
+        .tool-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          min-width: max-content;
+          border: 1px solid rgba(10, 15, 17, 0.1);
+          border-radius: 999px;
+          background: #fff;
+          padding: 8px 15px 8px 8px;
+          box-shadow: 0 10px 34px rgba(10, 15, 17, 0.06);
+        }
+
+        .tool-pill img {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        .tool-pill span {
+          font-size: 13px;
+          font-weight: 780;
+        }
+
+        .contact-section {
+          padding: 36px 0 94px;
+        }
+
+        .contact-shell {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) auto;
+          gap: 42px;
+          align-items: end;
+          padding: 64px;
+          border-radius: 8px;
+          background: var(--soft);
+          border: 1px solid rgba(10, 15, 17, 0.1);
+        }
+
+        .contact-shell > div > p {
+          max-width: 600px;
+          margin-top: 22px;
+        }
+
+        .contact-actions {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          align-items: stretch;
+        }
+
+        .contact-actions .button {
+          min-width: 238px;
+        }
+
+        .site-footer {
+          padding: 30px 0;
+          border-top: 1px solid rgba(10, 15, 17, 0.1);
+          background: #fff;
+        }
+
+        .footer-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 18px;
+          color: var(--muted);
+          font-size: 14px;
+          font-weight: 600;
+        }
+
+        .footer-row a {
+          color: inherit;
+          text-decoration: none;
+        }
+
+        .brand-mark:focus-visible,
+        .desktop-nav a:focus-visible,
+        .button:focus-visible,
+        .mobile-menu-toggle:focus-visible,
+        .project-card:focus-visible,
+        .credential-band:focus-visible,
+        .footer-row a:focus-visible {
+          outline: 3px solid rgba(127, 200, 255, 0.9);
+          outline-offset: 4px;
+        }
+
+        @keyframes riseIn {
+          from {
+            opacity: 0;
+            transform: translateY(18px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes toolDrift {
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(-50%);
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          *,
+          *::before,
+          *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            scroll-behavior: auto !important;
+            transition-duration: 0.01ms !important;
+          }
+        }
+
+        @media (max-width: 1020px) {
+          .hero-shell,
+          .strength-shell,
+          .section-heading-row,
+          .contact-shell {
+            grid-template-columns: 1fr;
+          }
+
+          .hero-visual {
+            min-height: 390px;
+          }
+
+          .strength-intro {
+            position: static;
+          }
+
+          .project-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+
+          .project-card-featured {
+            grid-column: span 2;
+          }
+
+          .contact-actions {
+            flex-direction: row;
+            flex-wrap: wrap;
+          }
+        }
+
+        @media (max-width: 820px) {
+          .page-shell {
+            width: min(100% - 36px, 1180px);
+          }
+
           .desktop-nav,
           .desktop-hire {
-            display: none !important;
+            display: none;
           }
 
           .mobile-menu-toggle {
-            display: inline-flex !important;
+            display: inline-flex;
+          }
+
+          .mobile-panel {
+            display: block;
+            padding-bottom: 18px;
+          }
+
+          .mobile-panel-inner {
+            display: grid;
+            gap: 10px;
+            padding: 14px;
+            border: 1px solid rgba(10, 15, 17, 0.1);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 20px 70px rgba(10, 15, 17, 0.14);
+          }
+
+          .mobile-panel-inner a {
+            padding: 14px 15px;
+            border-radius: 16px;
+            background: rgba(10, 15, 17, 0.04);
+            color: var(--ink);
+            font-size: 15px;
+            font-weight: 760;
+            text-decoration: none;
           }
 
           .hero-section {
-            padding-top: 120px !important;
-            padding-bottom: 56px !important;
+            padding-top: 92px;
           }
 
-          .hero-grid {
-            grid-template-columns: 1fr !important;
-            gap: 28px !important;
+          .hero-shell {
+            gap: 28px;
           }
 
-          .about-stack {
-            gap: 24px !important;
+          .hero-copy-block h1 {
+            max-width: 8ch;
+            font-size: clamp(4.15rem, 19vw, 7rem);
           }
 
-          .about-label {
-            width: 100% !important;
+          .hero-line {
+            margin-top: 22px;
           }
 
-          .footer-row {
-            justify-content: center !important;
-            text-align: center !important;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .section-block {
-            padding: 64px 0 !important;
+          .hero-visual {
+            min-height: 306px;
           }
 
-          .section-heading {
-            font-size: 2rem !important;
-            margin-bottom: 14px !important;
+          .portrait-slice {
+            right: 3%;
+            width: 34%;
+            border-radius: 28px;
           }
 
-          .section-intro {
-            font-size: 1rem !important;
-            margin-bottom: 32px !important;
+          .work-slice-large {
+            top: 10%;
+            width: 82%;
+            border-radius: 24px;
           }
 
-          .hero-kicker {
-            font-size: 13px !important;
-            line-height: 1.45 !important;
-            margin-bottom: 18px !important;
-            max-width: 290px;
+          .work-slice-small {
+            top: 0;
+            width: 34%;
+            border-radius: 20px;
           }
 
-          .hero-title,
-          .hero-subtitle {
-            font-size: clamp(2.35rem, 12vw, 3.45rem) !important;
-            line-height: 1.04 !important;
-            letter-spacing: 0 !important;
+          .proof-row {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            margin-top: 18px;
+            border-radius: 18px;
           }
 
-          .hero-title {
-            margin-bottom: 6px !important;
+          .proof-row span {
+            min-height: 58px;
+            padding: 10px 8px;
+            font-size: 11px;
+            line-height: 1.2;
           }
 
-          .hero-subtitle {
-            margin-bottom: 24px !important;
+          .work-section,
+          .strength-section,
+          .tool-section {
+            padding: 68px 0;
           }
 
-          .hero-copy {
-            font-size: 1rem !important;
-            line-height: 1.58 !important;
-            margin-bottom: 28px !important;
+          .project-grid {
+            grid-template-columns: 1fr;
           }
 
-          .hero-actions {
-            flex-direction: column !important;
-            align-items: stretch !important;
-            gap: 12px !important;
-            margin-bottom: 26px !important;
+          .project-card-featured {
+            grid-column: auto;
           }
 
-          .hero-actions a {
-            width: 100%;
-            justify-content: center;
-            min-height: 48px;
-            padding: 13px 18px !important;
-          }
-
-          .hero-chip-cloud {
-            overflow-x: auto;
-            flex-wrap: nowrap !important;
-            gap: 10px !important;
-            padding-bottom: 8px;
-            margin-right: -24px;
-            padding-right: 24px;
-            scrollbar-width: none;
-            scroll-snap-type: x proximity;
-          }
-
-          .hero-chip-cloud > span {
-            flex: 0 0 auto;
-            white-space: nowrap;
-            scroll-snap-align: start;
-            padding: 9px 14px !important;
-            font-size: 12px !important;
-          }
-
-          .cert-card {
-            padding: 22px !important;
-            border-radius: 22px !important;
-            box-shadow: 0 18px 48px rgba(217, 117, 83, 0.2) !important;
-          }
-
-          .cert-stats {
-            grid-template-columns: 1fr !important;
-            gap: 10px !important;
-          }
-
-          .work-grid {
-            grid-template-columns: 1fr !important;
-            gap: 18px !important;
-          }
-
+          .project-card-featured .project-image,
           .project-image {
-            height: 172px !important;
+            aspect-ratio: 1.36;
           }
 
-          .project-card {
-            border-radius: 18px !important;
-            box-shadow: 0 3px 16px rgba(11, 15, 20, 0.07) !important;
+          .strength-shell {
+            gap: 36px;
           }
 
-          .project-body,
-          .capability-card,
-          .tech-card {
-            padding: 18px !important;
+          .strength-row {
+            grid-template-columns: 1fr;
+            gap: 10px;
+            padding: 23px 0;
           }
 
-          .project-body h3,
-          .capability-card h3 {
-            font-size: 17px !important;
-            line-height: 1.28 !important;
+          .credential-band {
+            grid-template-columns: auto minmax(0, 1fr);
           }
 
-          .project-body p {
-            line-height: 1.55 !important;
-            margin-bottom: 14px !important;
+          .credential-band > svg {
+            display: none;
           }
 
-          .capabilities-grid,
-          .contact-grid {
-            grid-template-columns: 1fr !important;
-            gap: 24px !important;
+          .contact-section {
+            padding-bottom: 68px;
           }
 
-          .contact-card {
-            max-width: none !important;
-            padding: 24px !important;
-            border-radius: 24px !important;
-          }
-
-          .contact-heading {
-            font-size: 2.25rem !important;
-            line-height: 1.05 !important;
-          }
-
-          .footer-links {
-            width: 100%;
-            justify-content: center !important;
-            flex-wrap: wrap !important;
+          .contact-shell {
+            padding: 34px 24px;
           }
         }
 
         @media (max-width: 560px) {
           .page-shell {
-            padding-left: 18px !important;
-            padding-right: 18px !important;
+            width: min(100% - 28px, 1180px);
           }
 
           .header-row {
-            height: 68px !important;
+            height: 70px;
+          }
+
+          .button {
+            width: 100%;
+            min-height: 48px;
+          }
+
+          .hero-actions,
+          .contact-actions {
+            width: 100%;
+            flex-direction: column;
           }
 
           .hero-section {
-            padding-top: 98px !important;
-            padding-bottom: 48px !important;
+            padding-top: 78px;
+            padding-bottom: 24px;
           }
 
-          .hero-title,
-          .hero-subtitle {
-            font-size: clamp(2.1rem, 11.2vw, 2.85rem) !important;
+          .hero-copy-block h1 {
+            max-width: 9ch;
+            font-size: clamp(3.2rem, 16.4vw, 4.4rem);
           }
 
-          .hero-copy {
-            max-width: 34rem !important;
+          .hero-line {
+            font-size: 1.1rem;
+            line-height: 1.28;
           }
 
-          .cert-card h2 {
-            font-size: 2rem !important;
+          .hero-visual {
+            min-height: 208px;
           }
 
-          .cert-card a {
-            padding: 15px 16px !important;
-            font-size: 14px !important;
+          .portrait-slice {
+            width: 30%;
           }
 
-          .project-image {
-            height: 154px !important;
+          .work-slice-large {
+            width: 78%;
           }
 
-          .section-block {
-            padding: 56px 0 !important;
+          .work-slice-small {
+            width: 30%;
           }
 
-          .about-stack p {
-            font-size: 1.38rem !important;
-            line-height: 1.32 !important;
+          .section-heading-row {
+            margin-bottom: 24px;
           }
 
-          .capabilities-grid {
-            gap: 14px !important;
+          .section-heading-row h2,
+          .strength-intro h2,
+          .contact-shell h2 {
+            font-size: clamp(2.34rem, 12vw, 3.5rem);
           }
 
-          .tech-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-            gap: 12px !important;
+          .project-copy {
+            padding: 18px;
           }
 
-          .tech-card {
-            min-height: 158px;
-            padding: 16px 12px !important;
+          .project-title-row h3 {
+            font-size: 1.22rem;
           }
 
-          .tech-card h3 {
-            font-size: 14px !important;
-            line-height: 1.2 !important;
+          .contact-actions .button {
+            min-width: 0;
           }
 
-          .tech-card p {
-            font-size: 12px !important;
-          }
-
-          .contact-grid {
-            gap: 28px !important;
-          }
-
-          .contact-card {
-            gap: 20px !important;
-          }
-
-          .contact-email-row {
-            align-items: flex-start !important;
-            gap: 12px !important;
-          }
-
-          .contact-email-text {
-            overflow-wrap: anywhere;
+          .footer-row {
+            flex-direction: column;
+            text-align: center;
           }
         }
 
         @media (max-width: 380px) {
-          .hero-title,
-          .hero-subtitle {
-            font-size: 2.05rem !important;
+          .hero-copy-block h1 {
+            font-size: 3.14rem;
           }
 
-          .hero-actions a {
-            font-size: 14px !important;
+          .hero-visual {
+            min-height: 220px;
           }
 
-          .tech-grid {
-            grid-template-columns: 1fr !important;
+          .credential-band {
+            padding: 16px;
           }
         }
       `}</style>
-    </div>
+    </main>
   );
 }
