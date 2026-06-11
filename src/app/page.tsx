@@ -19,8 +19,8 @@ const hireMeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=Inq
 const introCallUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=Let's%20book%20a%2015-min%20intro&body=Hi%20Jared%2C%0A%0AI'd%20like%20to%20book%20a%2015-min%20intro%20call%20to%20discuss%20a%20potential%20project.%0A%0A`;
 
 const navLinks = [
-  { label: "Work", href: "#work" },
   { label: "Demos", href: "#demos" },
+  { label: "Work", href: "#work" },
   { label: "Strengths", href: "#strengths" },
   { label: "Contact", href: "#contact" },
 ];
@@ -39,7 +39,6 @@ const projects = [
     tags: ["Solar", "Data"],
     image: "/work/solar-sentinel-queue.png",
     href: "https://sentinel-alerts.vercel.app/",
-    featured: true,
   },
   {
     title: "MyTinyTale.ai",
@@ -352,67 +351,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="work" className="work-section">
-        <div className="page-shell section-heading-row">
-          <div>
-            <p className="eyebrow">Selected work</p>
-            <h2>Built for motion.</h2>
-          </div>
-          <p>
-            A sharper cut of products, launch systems, and dashboards.
-          </p>
-        </div>
-
-        <div className="page-shell project-grid">
-          {projects.map((project) => {
-            const content = (
-              <>
-                <div className="project-image">
-                  <Image
-                    src={project.image}
-                    alt={`${project.title} preview`}
-                    fill
-                    sizes={project.featured ? "(max-width: 900px) 100vw, 60vw" : "(max-width: 900px) 100vw, 33vw"}
-                  />
-                </div>
-                <div className="project-copy">
-                  <p className="project-eyebrow">{project.eyebrow}</p>
-                  <div className="project-title-row">
-                    <h3>{project.title}</h3>
-                    {project.href ? <ExternalLink aria-hidden="true" /> : null}
-                  </div>
-                  <p>{project.description}</p>
-                  <div className="tag-row">
-                    {project.tags.map((tag) => (
-                      <span key={tag}>{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              </>
-            );
-
-            return project.href ? (
-              <a
-                key={project.title}
-                className={`project-card ${project.featured ? "project-card-featured" : ""}`}
-                href={project.href}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {content}
-              </a>
-            ) : (
-              <article
-                key={project.title}
-                className={`project-card ${project.featured ? "project-card-featured" : ""}`}
-              >
-                {content}
-              </article>
-            );
-          })}
-        </div>
-      </section>
-
       <section id="demos" className="demo-section">
         <div className="page-shell demo-shell">
           <div className="demo-heading">
@@ -456,6 +394,67 @@ export default function Home() {
               </a>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section id="work" className="work-section">
+        <div className="page-shell section-heading-row">
+          <div>
+            <p className="eyebrow">Selected work</p>
+            <h2>Built for motion.</h2>
+          </div>
+          <p>
+            A sharper cut of products, launch systems, and dashboards.
+          </p>
+        </div>
+
+        <div className="page-shell project-grid">
+          {projects.map((project) => {
+            const content = (
+              <>
+                <div className="project-image">
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} preview`}
+                    fill
+                    sizes="(max-width: 900px) 100vw, 33vw"
+                  />
+                </div>
+                <div className="project-copy">
+                  <p className="project-eyebrow">{project.eyebrow}</p>
+                  <div className="project-title-row">
+                    <h3>{project.title}</h3>
+                    {project.href ? <ExternalLink aria-hidden="true" /> : null}
+                  </div>
+                  <p>{project.description}</p>
+                  <div className="tag-row">
+                    {project.tags.map((tag) => (
+                      <span key={tag}>{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </>
+            );
+
+            return project.href ? (
+              <a
+                key={project.title}
+                className="project-card"
+                href={project.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {content}
+              </a>
+            ) : (
+              <article
+                key={project.title}
+                className="project-card"
+              >
+                {content}
+              </article>
+            );
+          })}
         </div>
       </section>
 
@@ -926,30 +925,16 @@ export default function Home() {
           transform: translateY(-5px);
         }
 
-        .project-card-featured {
-          grid-column: span 2;
-          grid-row: span 2;
-        }
-
         .project-image {
           position: relative;
           width: 100%;
-          aspect-ratio: 1.48;
+          aspect-ratio: 16 / 9;
           overflow: hidden;
           background: #e8eee2;
         }
 
-        .project-card-featured .project-image {
-          aspect-ratio: 1.72;
-        }
-
         .project-image img {
-          object-fit: cover;
-          transition: transform 500ms ease;
-        }
-
-        .project-card:hover .project-image img {
-          transform: scale(1.045);
+          object-fit: contain;
         }
 
         .project-copy {
@@ -1433,10 +1418,6 @@ export default function Home() {
             grid-template-columns: repeat(2, minmax(0, 1fr));
           }
 
-          .project-card-featured {
-            grid-column: span 2;
-          }
-
           .contact-actions {
             flex-direction: row;
             flex-wrap: wrap;
@@ -1561,13 +1542,8 @@ export default function Home() {
             grid-template-columns: 1fr;
           }
 
-          .project-card-featured {
-            grid-column: auto;
-          }
-
-          .project-card-featured .project-image,
           .project-image {
-            aspect-ratio: 1.36;
+            aspect-ratio: 16 / 9;
           }
 
           .demo-shell {
