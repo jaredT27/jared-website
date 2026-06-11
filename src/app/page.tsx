@@ -165,6 +165,16 @@ const demoClips = [
     aspect: "square",
   },
   {
+    title: "Exterio remodel visualizer",
+    detail: "Roof + window preview",
+    label: "Exterior",
+    href: "https://www.linkedin.com/feed/update/urn:li:ugcPost:7470588818182737921/",
+    metric: "30 seconds",
+    video: "/demos/exterior-remodel/demo.mp4",
+    poster: "/demos/exterior-remodel/poster.jpg",
+    aspect: "wide",
+  },
+  {
     title: "Solar roof scout",
     detail: "Warehouse render",
     label: "Commercial solar",
