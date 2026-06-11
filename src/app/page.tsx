@@ -16,7 +16,7 @@ import {
 const email = "Jared@clauffice.com";
 const contactMailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=Inquiry%20from%20website&body=Hi%20Jared%2C%0A%0AI'd%20like%20to%20get%20in%20touch%20about...`;
 const hireMeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=Inquiry%20from%20website&body=Hi%20Jared%2C%0A%0AI'd%20like%20to%20discuss%20a%20project...`;
-const introCallUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=Let's%20book%20a%2015-min%20intro&body=Hi%20Jared%2C%0A%0AI'd%20like%20to%20book%20a%2015-min%20intro%20call%20to%20discuss%20a%20potential%20project.%0A%0A`;
+const introCallUrl = "https://cal.com/clauffice/30min";
 
 const navLinks = [
   { label: "Demos", href: "#demos" },
