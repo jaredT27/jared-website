@@ -144,20 +144,66 @@ const tools = [
   { name: "Rork", image: "/work/Rork Logo.jpg" },
 ];
 
-const linkedinPostUrl = "https://www.linkedin.com/feed/update/urn:li:activity:7454963786379309056/";
-
-const fieldDemos = [
+const demoClips = [
   {
-    title: "Neighborhood scan",
-    label: "Lead discovery",
+    title: "Wayne Fence",
+    detail: "Neighborhood scan",
+    label: "Fence",
+    href: "https://www.linkedin.com/feed/update/urn:li:activity:7454963786379309056/",
+    metric: "50 leads",
     video: "/demos/wayne-fence/lead-scan-demo-1.mp4",
     poster: "/demos/wayne-fence/lead-scan-demo-1-poster.jpg",
+    aspect: "square",
   },
   {
-    title: "Prospect list",
-    label: "Fence opportunity",
+    title: "Wayne Fence",
+    detail: "Prospect list",
+    label: "Fence",
+    href: "https://www.linkedin.com/feed/update/urn:li:activity:7454963786379309056/",
+    metric: "10 seconds",
     video: "/demos/wayne-fence/lead-scan-demo-2.mp4",
     poster: "/demos/wayne-fence/lead-scan-demo-2-poster.jpg",
+    aspect: "square",
+  },
+  {
+    title: "Solar roof scout",
+    detail: "Warehouse render",
+    label: "Commercial solar",
+    href: "https://www.linkedin.com/feed/update/urn:li:activity:7449460139507613696/",
+    metric: "$1.4M ITC",
+    video: "/demos/solar-roofs/demo.mp4",
+    poster: "/demos/solar-roofs/poster.jpg",
+    aspect: "square",
+  },
+  {
+    title: "Pool renovation finder",
+    detail: "Before/after outreach",
+    label: "Pool service",
+    href: "https://www.linkedin.com/feed/update/urn:li:activity:7449781056771244032/",
+    metric: "5.4M pools",
+    video: "/demos/pool-renovation/demo.mp4",
+    poster: "/demos/pool-renovation/poster.jpg",
+    aspect: "square",
+  },
+  {
+    title: "Dow Asphalt driveway scout",
+    detail: "Crack + quote scan",
+    label: "Asphalt",
+    href: "https://www.linkedin.com/feed/update/urn:li:activity:7453161676989804545/",
+    metric: "312 leads",
+    video: "/demos/dow-asphalt/demo.mp4",
+    poster: "/demos/dow-asphalt/poster.jpg",
+    aspect: "wide",
+  },
+  {
+    title: "GRI Turf lawn agent",
+    detail: "Restoration estimate",
+    label: "Turf",
+    href: "https://www.linkedin.com/feed/update/urn:li:activity:7469837102629883904/",
+    metric: "$2,850 quote",
+    video: "/demos/gri-turf/demo.mp4",
+    poster: "/demos/gri-turf/poster.jpg",
+    aspect: "wide",
   },
 ];
 
@@ -349,25 +395,25 @@ export default function Home() {
 
       <section id="demos" className="demo-section">
         <div className="page-shell demo-shell">
-          <div className="demo-copy">
-            <p className="eyebrow">LinkedIn demo</p>
-            <h2>AI agent for local lead discovery.</h2>
-            <p>
-              A Wayne Fence demo that scans neighborhoods, spots homes without fences, and turns visual demand into a ranked outreach list.
-            </p>
-            <div className="demo-stats" aria-label="Demo highlights">
-              <span>50 leads</span>
-              <span>10 seconds</span>
-              <span>$100K+ signal</span>
+          <div className="demo-heading">
+            <div>
+              <p className="eyebrow">LinkedIn demo reel</p>
+              <h2>Visual agents, live in the field.</h2>
             </div>
-            <a className="button button-light demo-link" href={linkedinPostUrl} target="_blank" rel="noreferrer">
-              View LinkedIn post <ExternalLink aria-hidden="true" />
-            </a>
+            <p>
+              Recent clips from AI agents that turn satellite imagery, screenshots, and local signals into usable lead lists.
+            </p>
           </div>
 
-          <div className="demo-media-grid">
-            {fieldDemos.map((demo) => (
-              <figure className="demo-media" key={demo.title}>
+          <div className="demo-gallery" aria-label="LinkedIn demo clips">
+            {demoClips.map((demo) => (
+              <a
+                className={`demo-tile demo-tile-${demo.aspect}`}
+                href={demo.href}
+                key={`${demo.title}-${demo.detail}`}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <video
                   autoPlay
                   loop
@@ -375,15 +421,19 @@ export default function Home() {
                   playsInline
                   poster={demo.poster}
                   preload="metadata"
-                  aria-label={`${demo.title} demo loop`}
+                  aria-label={`${demo.title} ${demo.detail} demo loop`}
                 >
                   <source src={demo.video} type="video/mp4" />
                 </video>
-                <figcaption>
-                  <span>{demo.label}</span>
-                  <strong>{demo.title}</strong>
-                </figcaption>
-              </figure>
+                <span className="demo-caption">
+                  <span>
+                    <em>{demo.label}</em>
+                    <strong>{demo.title}</strong>
+                    <small>{demo.detail}</small>
+                  </span>
+                  <b>{demo.metric}</b>
+                </span>
+              </a>
             ))}
           </div>
         </div>
@@ -946,109 +996,92 @@ export default function Home() {
         }
 
         .demo-section {
-          padding: 16px 0 104px;
+          padding: 28px 0 110px;
           background: var(--paper);
         }
 
         .demo-shell {
           display: grid;
-          grid-template-columns: minmax(0, 0.78fr) minmax(420px, 1.22fr);
-          gap: 34px;
-          align-items: stretch;
-          padding: 34px;
-          border: 1px solid rgba(10, 15, 17, 0.1);
-          border-radius: 8px;
-          background:
-            linear-gradient(135deg, rgba(216, 255, 87, 0.44), rgba(127, 200, 255, 0.32)),
-            rgba(255, 255, 255, 0.62);
+          gap: 38px;
         }
 
-        .demo-copy {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          justify-content: space-between;
-          min-height: 520px;
-          padding: 18px 0 6px;
+        .demo-heading {
+          display: grid;
+          grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.72fr);
+          gap: 42px;
+          align-items: end;
         }
 
-        .demo-copy h2 {
-          max-width: 8ch;
-          font-size: clamp(2.9rem, 6vw, 5.6rem);
+        .demo-heading h2 {
+          max-width: 9ch;
+          font-size: clamp(3.1rem, 6.8vw, 6.2rem);
           font-weight: 850;
           letter-spacing: 0;
           line-height: 0.9;
         }
 
-        .demo-copy > p:not(.eyebrow) {
-          max-width: 440px;
-          margin-top: 24px;
-          color: rgba(10, 15, 17, 0.68);
+        .demo-heading > p {
+          max-width: 540px;
+          color: rgba(10, 15, 17, 0.66);
           font-size: 17px;
           font-weight: 560;
           line-height: 1.48;
         }
 
-        .demo-stats {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 8px;
-          margin: 32px 0;
-        }
-
-        .demo-stats span {
-          border: 1px solid rgba(10, 15, 17, 0.12);
-          border-radius: 999px;
-          background: rgba(255, 255, 255, 0.58);
-          color: rgba(10, 15, 17, 0.78);
-          font-size: 12px;
-          font-weight: 800;
-          padding: 9px 12px;
-        }
-
-        .demo-link {
-          width: auto;
-        }
-
-        .demo-media-grid {
+        .demo-gallery {
           display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
+          grid-template-columns: repeat(3, minmax(0, 1fr));
           gap: 16px;
-          min-width: 0;
+          align-items: start;
         }
 
-        .demo-media {
+        .demo-tile {
           position: relative;
-          min-width: 0;
+          display: block;
           overflow: hidden;
-          margin: 0;
-          border: 1px solid rgba(255, 255, 255, 0.68);
+          border: 1px solid rgba(10, 15, 17, 0.1);
           border-radius: 8px;
-          background: #e9f0df;
-          box-shadow: 0 24px 64px rgba(10, 15, 17, 0.13);
+          background: #101417;
+          box-shadow: 0 22px 60px rgba(10, 15, 17, 0.14);
+          color: #fff;
+          text-decoration: none;
+          transition:
+            border-color 180ms ease,
+            transform 180ms ease,
+            box-shadow 180ms ease;
         }
 
-        .demo-media:nth-child(2) {
-          transform: translateY(42px);
+        .demo-tile:hover {
+          border-color: rgba(10, 15, 17, 0.22);
+          box-shadow: 0 28px 74px rgba(10, 15, 17, 0.18);
+          transform: translateY(-3px);
         }
 
-        .demo-media video {
+        .demo-tile video {
           display: block;
           width: 100%;
-          aspect-ratio: 1;
           object-fit: cover;
         }
 
-        .demo-media figcaption {
+        .demo-tile-square video {
+          aspect-ratio: 1;
+        }
+
+        .demo-tile-wide video {
+          aspect-ratio: 3 / 2;
+        }
+
+        .demo-caption {
           position: absolute;
-          left: 14px;
-          right: 14px;
-          bottom: 14px;
+          left: 12px;
+          right: 12px;
+          bottom: 12px;
           display: flex;
           align-items: center;
           justify-content: space-between;
           gap: 12px;
-          padding: 10px 12px;
+          min-width: 0;
+          padding: 9px 11px;
           border: 1px solid rgba(255, 255, 255, 0.42);
           border-radius: 999px;
           background: rgba(10, 15, 17, 0.76);
@@ -1056,17 +1089,44 @@ export default function Home() {
           color: #fff;
         }
 
-        .demo-media figcaption span {
+        .demo-caption > span {
+          display: grid;
+          gap: 3px;
+          min-width: 0;
+        }
+
+        .demo-caption em {
           color: rgba(255, 255, 255, 0.72);
           font-size: 11px;
           font-weight: 760;
+          font-style: normal;
+          line-height: 1;
           text-transform: uppercase;
         }
 
-        .demo-media figcaption strong {
+        .demo-caption strong {
           font-size: 13px;
           font-weight: 820;
           line-height: 1;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .demo-caption small {
+          color: rgba(255, 255, 255, 0.74);
+          font-size: 11px;
+          font-weight: 680;
+          line-height: 1.1;
+        }
+
+        .demo-caption b {
+          flex: 0 0 auto;
+          color: var(--sun);
+          font-size: 12px;
+          font-weight: 850;
+          line-height: 1;
+          white-space: nowrap;
         }
 
         .strength-section {
@@ -1295,6 +1355,7 @@ export default function Home() {
         .button:focus-visible,
         .mobile-menu-toggle:focus-visible,
         .project-card:focus-visible,
+        .demo-tile:focus-visible,
         .credential-band:focus-visible,
         .footer-row a:focus-visible {
           outline: 3px solid rgba(127, 200, 255, 0.9);
@@ -1361,12 +1422,20 @@ export default function Home() {
             flex-wrap: wrap;
           }
 
-          .demo-shell {
+          .demo-heading {
             grid-template-columns: 1fr;
           }
 
-          .demo-copy {
-            min-height: 0;
+          .demo-heading {
+            gap: 18px;
+          }
+
+          .demo-heading > p {
+            max-width: 640px;
+          }
+
+          .demo-gallery {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
           }
         }
 
@@ -1482,32 +1551,22 @@ export default function Home() {
           }
 
           .demo-shell {
-            padding: 22px;
-            gap: 24px;
+            gap: 26px;
           }
 
-          .demo-copy h2 {
+          .demo-heading h2 {
             max-width: 9ch;
           }
 
-          .demo-copy > p:not(.eyebrow) {
-            margin-top: 18px;
+          .demo-heading > p {
             font-size: 15px;
           }
 
-          .demo-stats {
-            margin: 24px 0;
-          }
-
-          .demo-media-grid {
+          .demo-gallery {
             gap: 12px;
           }
 
-          .demo-media:nth-child(2) {
-            transform: translateY(24px);
-          }
-
-          .demo-media figcaption {
+          .demo-caption {
             left: 10px;
             right: 10px;
             bottom: 10px;
@@ -1613,12 +1672,8 @@ export default function Home() {
             font-size: 1.22rem;
           }
 
-          .demo-media-grid {
+          .demo-gallery {
             grid-template-columns: 1fr;
-          }
-
-          .demo-media:nth-child(2) {
-            transform: none;
           }
 
           .contact-actions .button {
